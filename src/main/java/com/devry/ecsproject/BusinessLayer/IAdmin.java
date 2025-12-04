@@ -24,4 +24,4 @@ public interface IAdmin {
     public static void newEmployee() {
         // code to add an employee
     }
-}
+} 
