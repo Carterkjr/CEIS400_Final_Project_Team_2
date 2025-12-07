@@ -6,12 +6,12 @@ package com.devry.ecsproject.BusinessLayer;
 
 /**
  *
- * @author britt
+ * @author Jordan
  */
 public class EmployeeGUI extends javax.swing.JPanel {
 
     /**
-     * Creates new form EmployeeGUI
+     * Creates new form EmployeePanel
      */
     public EmployeeGUI() {
         initComponents();
@@ -26,19 +26,741 @@ public class EmployeeGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
+        pnlEmployees = new javax.swing.JPanel();
+        pnlEmployeeOptions = new javax.swing.JPanel();
+        tabPaneEmployeeSupervision = new javax.swing.JTabbedPane();
+        panelViewEmployee = new javax.swing.JPanel();
+        pnlViewEmployeeInput = new javax.swing.JPanel();
+        lblViewEmployeeID = new javax.swing.JLabel();
+        inputIDViewEmployee = new javax.swing.JTextField();
+        btnViewEmplyoeeSubmit = new javax.swing.JButton();
+        lblViewEmployeeError = new javax.swing.JLabel();
+        pnlViewEmployeeResults = new javax.swing.JPanel();
+        lblViewEmployeeName = new javax.swing.JLabel();
+        lblViewEmployeeEmail = new javax.swing.JLabel();
+        lblViewEmployeeDate = new javax.swing.JLabel();
+        lblViewEmployeeRole = new javax.swing.JLabel();
+        lblViewEmployeeDepartment = new javax.swing.JLabel();
+        lblViewEmployeeAccess = new javax.swing.JLabel();
+        textViewEmployeeName = new javax.swing.JTextField();
+        textViewEmployeeEmail = new javax.swing.JTextField();
+        textViewEmployeeDate = new javax.swing.JTextField();
+        textViewEmployeeRole = new javax.swing.JTextField();
+        textViewEmployeeDepartment = new javax.swing.JTextField();
+        textViewEmployeeAccess = new javax.swing.JTextField();
+        panelHireEmployee = new javax.swing.JPanel();
+        pnlHireEmployee = new javax.swing.JPanel();
+        lblHireEmployeeName = new javax.swing.JLabel();
+        lblHireEmployeeEmail = new javax.swing.JLabel();
+        lblHireEmployeeRole = new javax.swing.JLabel();
+        lblHireEmployeeDepartment = new javax.swing.JLabel();
+        textHireEmployeeDepartment = new javax.swing.JTextField();
+        textHireEmployeeRole = new javax.swing.JTextField();
+        textHireEmployeeEmail = new javax.swing.JTextField();
+        textHireEmployeeName = new javax.swing.JTextField();
+        lblHireEmployeeAccess = new javax.swing.JLabel();
+        textHireEmployeeAccess = new javax.swing.JTextField();
+        btnHireEmployeeSubmit = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtHireEmployeeResult = new javax.swing.JTextArea();
+        panelTerminateEmployee = new javax.swing.JPanel();
+        pnlTerminateEmployeeInput = new javax.swing.JPanel();
+        lblTerminateEmployeeID = new javax.swing.JLabel();
+        inputIDTerminateEmployee = new javax.swing.JTextField();
+        btnTerminateEmplyoeeView = new javax.swing.JButton();
+        lblTerminateEmployeeError = new javax.swing.JLabel();
+        pnlTerminateEmployeeResults = new javax.swing.JPanel();
+        lblTerminateEmployeeName = new javax.swing.JLabel();
+        lblTerminateEmployeeEmail = new javax.swing.JLabel();
+        lblTerminateEmployeeDate = new javax.swing.JLabel();
+        lblTerminateEmployeeRole = new javax.swing.JLabel();
+        lblTerminateEmployeeDepartment = new javax.swing.JLabel();
+        lblTerminateEmployeeAccess = new javax.swing.JLabel();
+        textTerminateEmployeeName = new javax.swing.JTextField();
+        textTerminateEmployeeEmail = new javax.swing.JTextField();
+        textTerminateEmployeeDate = new javax.swing.JTextField();
+        textTerminateEmployeeRole = new javax.swing.JTextField();
+        textTerminateEmployeeDepartment = new javax.swing.JTextField();
+        textTerminateEmployeeAccess = new javax.swing.JTextField();
+        btnTerminateEmplyoeeSubmit = new javax.swing.JButton();
+
+        pnlEmployees.setBackground(new java.awt.Color(204, 204, 204));
+        pnlEmployees.setMaximumSize(new java.awt.Dimension(100, 32767));
+        pnlEmployees.setPreferredSize(new java.awt.Dimension(100, 322));
+
+        pnlEmployeeOptions.setBackground(new java.awt.Color(204, 204, 204));
+
+        panelViewEmployee.setBackground(new java.awt.Color(204, 204, 204));
+
+        pnlViewEmployeeInput.setBackground(new java.awt.Color(204, 204, 204));
+        pnlViewEmployeeInput.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblViewEmployeeID.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeID.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblViewEmployeeID.setText("Employee's ID:");
+        lblViewEmployeeID.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblViewEmployeeID.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblViewEmployeeID.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        inputIDViewEmployee.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        btnViewEmplyoeeSubmit.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnViewEmplyoeeSubmit.setText("Submit");
+        btnViewEmplyoeeSubmit.addActionListener(this::btnViewEmplyoeeSubmitActionPerformed);
+
+        lblViewEmployeeError.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeError.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblViewEmployeeError.setText("Error");
+        lblViewEmployeeError.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblViewEmployeeError.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblViewEmployeeError.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        javax.swing.GroupLayout pnlViewEmployeeInputLayout = new javax.swing.GroupLayout(pnlViewEmployeeInput);
+        pnlViewEmployeeInput.setLayout(pnlViewEmployeeInputLayout);
+        pnlViewEmployeeInputLayout.setHorizontalGroup(
+            pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlViewEmployeeInputLayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnViewEmplyoeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12))
+                        .addComponent(lblViewEmployeeError, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputIDViewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblViewEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        pnlViewEmployeeInputLayout.setVerticalGroup(
+            pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblViewEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(inputIDViewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(lblViewEmployeeError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnViewEmplyoeeSubmit)
+                .addContainerGap())
+        );
+
+        pnlViewEmployeeResults.setBackground(new java.awt.Color(204, 204, 204));
+        pnlViewEmployeeResults.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblViewEmployeeName.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeName.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeName.setText("Name");
+
+        lblViewEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeEmail.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeEmail.setText("Email");
+
+        lblViewEmployeeDate.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeDate.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeDate.setText("Hire Date");
+
+        lblViewEmployeeRole.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeRole.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeRole.setText("Role");
+
+        lblViewEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeDepartment.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeDepartment.setText("Department");
+
+        lblViewEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeAccess.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeAccess.setText("Access Level");
+
+        textViewEmployeeName.setEditable(false);
+        textViewEmployeeName.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeName.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textViewEmployeeName.setText("John Doe");
+        textViewEmployeeName.setFocusable(false);
+
+        textViewEmployeeEmail.setEditable(false);
+        textViewEmployeeEmail.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textViewEmployeeEmail.setText("jdoe555@email.com");
+        textViewEmployeeEmail.setFocusable(false);
+
+        textViewEmployeeDate.setEditable(false);
+        textViewEmployeeDate.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeDate.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textViewEmployeeDate.setText("12-31-1999");
+        textViewEmployeeDate.setFocusable(false);
+
+        textViewEmployeeRole.setEditable(false);
+        textViewEmployeeRole.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeRole.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textViewEmployeeRole.setText("Worker");
+        textViewEmployeeRole.setFocusable(false);
+
+        textViewEmployeeDepartment.setEditable(false);
+        textViewEmployeeDepartment.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textViewEmployeeDepartment.setText("Maintenance");
+        textViewEmployeeDepartment.setFocusable(false);
+
+        textViewEmployeeAccess.setEditable(false);
+        textViewEmployeeAccess.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textViewEmployeeAccess.setText("1");
+        textViewEmployeeAccess.setFocusable(false);
+
+        javax.swing.GroupLayout pnlViewEmployeeResultsLayout = new javax.swing.GroupLayout(pnlViewEmployeeResults);
+        pnlViewEmployeeResults.setLayout(pnlViewEmployeeResultsLayout);
+        pnlViewEmployeeResultsLayout.setHorizontalGroup(
+            pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeResultsLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblViewEmployeeEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeDate, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeRole, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeAccess, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textViewEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeDate, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        pnlViewEmployeeResultsLayout.setVerticalGroup(
+            pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeResultsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblViewEmployeeName)
+                    .addComponent(textViewEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblViewEmployeeEmail)
+                    .addComponent(textViewEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textViewEmployeeDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblViewEmployeeDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textViewEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblViewEmployeeRole))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textViewEmployeeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblViewEmployeeDepartment))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblViewEmployeeAccess)
+                    .addComponent(textViewEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout panelViewEmployeeLayout = new javax.swing.GroupLayout(panelViewEmployee);
+        panelViewEmployee.setLayout(panelViewEmployeeLayout);
+        panelViewEmployeeLayout.setHorizontalGroup(
+            panelViewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelViewEmployeeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(pnlViewEmployeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(pnlViewEmployeeResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        panelViewEmployeeLayout.setVerticalGroup(
+            panelViewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelViewEmployeeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(panelViewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlViewEmployeeResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlViewEmployeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        tabPaneEmployeeSupervision.addTab("View Employee", panelViewEmployee);
+
+        panelHireEmployee.setBackground(new java.awt.Color(204, 204, 204));
+
+        pnlHireEmployee.setBackground(new java.awt.Color(204, 204, 204));
+        pnlHireEmployee.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblHireEmployeeName.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblHireEmployeeName.setForeground(new java.awt.Color(51, 51, 51));
+        lblHireEmployeeName.setText("Name");
+
+        lblHireEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblHireEmployeeEmail.setForeground(new java.awt.Color(51, 51, 51));
+        lblHireEmployeeEmail.setText("Email");
+
+        lblHireEmployeeRole.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblHireEmployeeRole.setForeground(new java.awt.Color(51, 51, 51));
+        lblHireEmployeeRole.setText("Role");
+
+        lblHireEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblHireEmployeeDepartment.setForeground(new java.awt.Color(51, 51, 51));
+        lblHireEmployeeDepartment.setText("Department");
+
+        textHireEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        textHireEmployeeRole.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        textHireEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        textHireEmployeeName.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        lblHireEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblHireEmployeeAccess.setForeground(new java.awt.Color(51, 51, 51));
+        lblHireEmployeeAccess.setText("Access Level");
+
+        textHireEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        btnHireEmployeeSubmit.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnHireEmployeeSubmit.setText("Submit");
+        btnHireEmployeeSubmit.addActionListener(this::btnHireEmployeeSubmitActionPerformed);
+
+        javax.swing.GroupLayout pnlHireEmployeeLayout = new javax.swing.GroupLayout(pnlHireEmployee);
+        pnlHireEmployee.setLayout(pnlHireEmployeeLayout);
+        pnlHireEmployeeLayout.setHorizontalGroup(
+            pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHireEmployeeLayout.createSequentialGroup()
+                .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlHireEmployeeLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblHireEmployeeEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHireEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHireEmployeeRole, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHireEmployeeDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHireEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textHireEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textHireEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textHireEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textHireEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textHireEmployeeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlHireEmployeeLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(btnHireEmployeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        pnlHireEmployeeLayout.setVerticalGroup(
+            pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHireEmployeeLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHireEmployeeName)
+                    .addComponent(textHireEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHireEmployeeEmail)
+                    .addComponent(textHireEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textHireEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHireEmployeeRole))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textHireEmployeeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHireEmployeeDepartment))
+                .addGap(11, 11, 11)
+                .addGroup(pnlHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHireEmployeeAccess)
+                    .addComponent(textHireEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnHireEmployeeSubmit)
+                .addGap(21, 21, 21))
+        );
+
+        jScrollPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        txtHireEmployeeResult.setEditable(false);
+        txtHireEmployeeResult.setBackground(new java.awt.Color(204, 204, 204));
+        txtHireEmployeeResult.setColumns(20);
+        txtHireEmployeeResult.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        txtHireEmployeeResult.setForeground(new java.awt.Color(51, 51, 51));
+        txtHireEmployeeResult.setLineWrap(true);
+        txtHireEmployeeResult.setRows(5);
+        txtHireEmployeeResult.setText("Employee Added to DB\n\nID: 00001\nName: John Doe\nEmail: jdoe@email.com\nHire Date: 12-31-1999\nRole: Worker\nDepartment: Maintenance\nAccess Level: 1");
+        txtHireEmployeeResult.setBorder(null);
+        txtHireEmployeeResult.setFocusable(false);
+        jScrollPane1.setViewportView(txtHireEmployeeResult);
+
+        javax.swing.GroupLayout panelHireEmployeeLayout = new javax.swing.GroupLayout(panelHireEmployee);
+        panelHireEmployee.setLayout(panelHireEmployeeLayout);
+        panelHireEmployeeLayout.setHorizontalGroup(
+            panelHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHireEmployeeLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(pnlHireEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addGap(41, 41, 41))
+        );
+        panelHireEmployeeLayout.setVerticalGroup(
+            panelHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHireEmployeeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(panelHireEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(pnlHireEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabPaneEmployeeSupervision.addTab("Hire Employee", panelHireEmployee);
+
+        panelTerminateEmployee.setBackground(new java.awt.Color(204, 204, 204));
+
+        pnlTerminateEmployeeInput.setBackground(new java.awt.Color(204, 204, 204));
+        pnlTerminateEmployeeInput.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblTerminateEmployeeID.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeID.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTerminateEmployeeID.setText("Employee's ID:");
+        lblTerminateEmployeeID.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblTerminateEmployeeID.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblTerminateEmployeeID.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        inputIDTerminateEmployee.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        btnTerminateEmplyoeeView.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnTerminateEmplyoeeView.setText("View");
+        btnTerminateEmplyoeeView.addActionListener(this::btnTerminateEmplyoeeViewActionPerformed);
+
+        lblTerminateEmployeeError.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeError.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTerminateEmployeeError.setText("Error");
+        lblTerminateEmployeeError.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblTerminateEmployeeError.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblTerminateEmployeeError.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        javax.swing.GroupLayout pnlTerminateEmployeeInputLayout = new javax.swing.GroupLayout(pnlTerminateEmployeeInput);
+        pnlTerminateEmployeeInput.setLayout(pnlTerminateEmployeeInputLayout);
+        pnlTerminateEmployeeInputLayout.setHorizontalGroup(
+            pnlTerminateEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTerminateEmployeeInputLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(pnlTerminateEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTerminateEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTerminateEmployeeInputLayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTerminateEmplyoeeView, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12))
+                        .addComponent(lblTerminateEmployeeError, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputIDTerminateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTerminateEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        pnlTerminateEmployeeInputLayout.setVerticalGroup(
+            pnlTerminateEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTerminateEmployeeInputLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblTerminateEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(inputIDTerminateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(lblTerminateEmployeeError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTerminateEmplyoeeView)
+                .addContainerGap())
+        );
+
+        pnlTerminateEmployeeResults.setBackground(new java.awt.Color(204, 204, 204));
+        pnlTerminateEmployeeResults.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblTerminateEmployeeName.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeName.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeName.setText("Name");
+
+        lblTerminateEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeEmail.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeEmail.setText("Email");
+
+        lblTerminateEmployeeDate.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeDate.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeDate.setText("Hire Date");
+
+        lblTerminateEmployeeRole.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeRole.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeRole.setText("Role");
+
+        lblTerminateEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeDepartment.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeDepartment.setText("Department");
+
+        lblTerminateEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTerminateEmployeeAccess.setForeground(new java.awt.Color(51, 51, 51));
+        lblTerminateEmployeeAccess.setText("Access Level");
+
+        textTerminateEmployeeName.setEditable(false);
+        textTerminateEmployeeName.setBackground(new java.awt.Color(225, 225, 225));
+        textTerminateEmployeeName.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textTerminateEmployeeName.setText("John Doe");
+        textTerminateEmployeeName.setFocusable(false);
+
+        textTerminateEmployeeEmail.setEditable(false);
+        textTerminateEmployeeEmail.setBackground(new java.awt.Color(225, 225, 225));
+        textTerminateEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textTerminateEmployeeEmail.setText("jdoe555@email.com");
+        textTerminateEmployeeEmail.setFocusable(false);
+
+        textTerminateEmployeeDate.setEditable(false);
+        textTerminateEmployeeDate.setBackground(new java.awt.Color(225, 225, 225));
+        textTerminateEmployeeDate.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textTerminateEmployeeDate.setText("12-31-1999");
+        textTerminateEmployeeDate.setFocusable(false);
+
+        textTerminateEmployeeRole.setEditable(false);
+        textTerminateEmployeeRole.setBackground(new java.awt.Color(225, 225, 225));
+        textTerminateEmployeeRole.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textTerminateEmployeeRole.setText("Worker");
+        textTerminateEmployeeRole.setFocusable(false);
+
+        textTerminateEmployeeDepartment.setEditable(false);
+        textTerminateEmployeeDepartment.setBackground(new java.awt.Color(225, 225, 225));
+        textTerminateEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textTerminateEmployeeDepartment.setText("Maintenance");
+        textTerminateEmployeeDepartment.setFocusable(false);
+
+        textTerminateEmployeeAccess.setEditable(false);
+        textTerminateEmployeeAccess.setBackground(new java.awt.Color(225, 225, 225));
+        textTerminateEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        textTerminateEmployeeAccess.setText("1");
+        textTerminateEmployeeAccess.setFocusable(false);
+
+        btnTerminateEmplyoeeSubmit.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnTerminateEmplyoeeSubmit.setText("Submit");
+        btnTerminateEmplyoeeSubmit.addActionListener(this::btnTerminateEmplyoeeSubmitActionPerformed);
+
+        javax.swing.GroupLayout pnlTerminateEmployeeResultsLayout = new javax.swing.GroupLayout(pnlTerminateEmployeeResults);
+        pnlTerminateEmployeeResults.setLayout(pnlTerminateEmployeeResultsLayout);
+        pnlTerminateEmployeeResultsLayout.setHorizontalGroup(
+            pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTerminateEmployeeResultsLayout.createSequentialGroup()
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTerminateEmployeeResultsLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTerminateEmployeeEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTerminateEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTerminateEmployeeDate, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(lblTerminateEmployeeRole, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(lblTerminateEmployeeDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(lblTerminateEmployeeAccess, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textTerminateEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTerminateEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTerminateEmployeeDate, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTerminateEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTerminateEmployeeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTerminateEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlTerminateEmployeeResultsLayout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(btnTerminateEmplyoeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        pnlTerminateEmployeeResultsLayout.setVerticalGroup(
+            pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTerminateEmployeeResultsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTerminateEmployeeName)
+                    .addComponent(textTerminateEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTerminateEmployeeEmail)
+                    .addComponent(textTerminateEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textTerminateEmployeeDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTerminateEmployeeDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textTerminateEmployeeRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTerminateEmployeeRole))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textTerminateEmployeeDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTerminateEmployeeDepartment))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlTerminateEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTerminateEmployeeAccess)
+                    .addComponent(textTerminateEmployeeAccess, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTerminateEmplyoeeSubmit)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout panelTerminateEmployeeLayout = new javax.swing.GroupLayout(panelTerminateEmployee);
+        panelTerminateEmployee.setLayout(panelTerminateEmployeeLayout);
+        panelTerminateEmployeeLayout.setHorizontalGroup(
+            panelTerminateEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTerminateEmployeeLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(pnlTerminateEmployeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(pnlTerminateEmployeeResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        panelTerminateEmployeeLayout.setVerticalGroup(
+            panelTerminateEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTerminateEmployeeLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(panelTerminateEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlTerminateEmployeeResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTerminateEmployeeInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
+        );
+
+        tabPaneEmployeeSupervision.addTab("Terminate Employee", panelTerminateEmployee);
+
+        javax.swing.GroupLayout pnlEmployeeOptionsLayout = new javax.swing.GroupLayout(pnlEmployeeOptions);
+        pnlEmployeeOptions.setLayout(pnlEmployeeOptionsLayout);
+        pnlEmployeeOptionsLayout.setHorizontalGroup(
+            pnlEmployeeOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmployeeOptionsLayout.createSequentialGroup()
+                .addComponent(tabPaneEmployeeSupervision, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnlEmployeeOptionsLayout.setVerticalGroup(
+            pnlEmployeeOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmployeeOptionsLayout.createSequentialGroup()
+                .addComponent(tabPaneEmployeeSupervision, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlEmployeesLayout = new javax.swing.GroupLayout(pnlEmployees);
+        pnlEmployees.setLayout(pnlEmployeesLayout);
+        pnlEmployeesLayout.setHorizontalGroup(
+            pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEmployeesLayout.createSequentialGroup()
+                .addComponent(pnlEmployeeOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 510, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        pnlEmployeesLayout.setVerticalGroup(
+            pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmployeesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlEmployeeOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 322, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>                        
 
+    private void btnViewEmplyoeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+        // TODO
+        // retrieve employee information from db
+        // show on screen in pnlViewEmployeeResults
+    }                                                     
+
+    private void btnHireEmployeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+        // TODO
+        // create employee object in db, ensure unique id
+        // create employee hired report
+        // return results
+    }                                                     
+
+    private void btnTerminateEmplyoeeViewActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+        // TODO
+        // retrieve employee information from db
+        // show on screen in pnlTerminateEmployeeResults
+    }                                                        
+
+    private void btnTerminateEmplyoeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                           
+        // TODO
+        // remove employee from db (or update activeEmployee field?)
+    }                                                          
+
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton btnHireEmployeeSubmit;
+    private javax.swing.JButton btnTerminateEmplyoeeSubmit;
+    private javax.swing.JButton btnTerminateEmplyoeeView;
+    private javax.swing.JButton btnViewEmplyoeeSubmit;
+    private javax.swing.JTextField inputIDTerminateEmployee;
+    private javax.swing.JTextField inputIDViewEmployee;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblHireEmployeeAccess;
+    private javax.swing.JLabel lblHireEmployeeDepartment;
+    private javax.swing.JLabel lblHireEmployeeEmail;
+    private javax.swing.JLabel lblHireEmployeeName;
+    private javax.swing.JLabel lblHireEmployeeRole;
+    private javax.swing.JLabel lblTerminateEmployeeAccess;
+    private javax.swing.JLabel lblTerminateEmployeeDate;
+    private javax.swing.JLabel lblTerminateEmployeeDepartment;
+    private javax.swing.JLabel lblTerminateEmployeeEmail;
+    private javax.swing.JLabel lblTerminateEmployeeError;
+    private javax.swing.JLabel lblTerminateEmployeeID;
+    private javax.swing.JLabel lblTerminateEmployeeName;
+    private javax.swing.JLabel lblTerminateEmployeeRole;
+    private javax.swing.JLabel lblViewEmployeeAccess;
+    private javax.swing.JLabel lblViewEmployeeDate;
+    private javax.swing.JLabel lblViewEmployeeDepartment;
+    private javax.swing.JLabel lblViewEmployeeEmail;
+    private javax.swing.JLabel lblViewEmployeeError;
+    private javax.swing.JLabel lblViewEmployeeID;
+    private javax.swing.JLabel lblViewEmployeeName;
+    private javax.swing.JLabel lblViewEmployeeRole;
+    private javax.swing.JPanel panelHireEmployee;
+    private javax.swing.JPanel panelTerminateEmployee;
+    private javax.swing.JPanel panelViewEmployee;
+    private javax.swing.JPanel pnlEmployeeOptions;
+    private javax.swing.JPanel pnlEmployees;
+    private javax.swing.JPanel pnlHireEmployee;
+    private javax.swing.JPanel pnlTerminateEmployeeInput;
+    private javax.swing.JPanel pnlTerminateEmployeeResults;
+    private javax.swing.JPanel pnlViewEmployeeInput;
+    private javax.swing.JPanel pnlViewEmployeeResults;
+    private javax.swing.JTabbedPane tabPaneEmployeeSupervision;
+    private javax.swing.JTextField textHireEmployeeAccess;
+    private javax.swing.JTextField textHireEmployeeDepartment;
+    private javax.swing.JTextField textHireEmployeeEmail;
+    private javax.swing.JTextField textHireEmployeeName;
+    private javax.swing.JTextField textHireEmployeeRole;
+    private javax.swing.JTextField textTerminateEmployeeAccess;
+    private javax.swing.JTextField textTerminateEmployeeDate;
+    private javax.swing.JTextField textTerminateEmployeeDepartment;
+    private javax.swing.JTextField textTerminateEmployeeEmail;
+    private javax.swing.JTextField textTerminateEmployeeName;
+    private javax.swing.JTextField textTerminateEmployeeRole;
+    private javax.swing.JTextField textViewEmployeeAccess;
+    private javax.swing.JTextField textViewEmployeeDate;
+    private javax.swing.JTextField textViewEmployeeDepartment;
+    private javax.swing.JTextField textViewEmployeeEmail;
+    private javax.swing.JTextField textViewEmployeeName;
+    private javax.swing.JTextField textViewEmployeeRole;
+    private javax.swing.JTextArea txtHireEmployeeResult;
     // End of variables declaration                   
 }

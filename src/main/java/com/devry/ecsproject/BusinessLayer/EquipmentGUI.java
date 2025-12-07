@@ -6,12 +6,12 @@ package com.devry.ecsproject.BusinessLayer;
 
 /**
  *
- * @author britt
+ * @author Jordan
  */
 public class EquipmentGUI extends javax.swing.JPanel {
 
     /**
-     * Creates new form EquipmentGUI
+     * Creates new form EquipmentPanel
      */
     public EquipmentGUI() {
         initComponents();
@@ -26,19 +26,235 @@ public class EquipmentGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
+        pnlEquipment = new javax.swing.JPanel();
+        pnlRecords = new javax.swing.JPanel();
+        textEmployeeID = new javax.swing.JTextField();
+        textEquipmentID = new javax.swing.JTextField();
+        lblEquipmentID = new javax.swing.JLabel();
+        lblEmployeeID = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        pnlTransaction = new javax.swing.JPanel();
+        rdoBtnCheckin = new javax.swing.JRadioButton();
+        rdoBtnCheckout = new javax.swing.JRadioButton();
+        lblTransactionType = new javax.swing.JLabel();
+        checkDamaged = new javax.swing.JCheckBox();
+        btnSubmitEquipmentTransaction = new javax.swing.JButton();
+
+        pnlEquipment.setBackground(new java.awt.Color(204, 204, 204));
+
+        pnlRecords.setBackground(new java.awt.Color(204, 204, 204));
+
+        textEmployeeID.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        textEquipmentID.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+
+        lblEquipmentID.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblEquipmentID.setForeground(new java.awt.Color(51, 51, 51));
+        lblEquipmentID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblEquipmentID.setText("Equipment Code:");
+        lblEquipmentID.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblEquipmentID.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblEquipmentID.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        lblEmployeeID.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblEmployeeID.setForeground(new java.awt.Color(51, 51, 51));
+        lblEmployeeID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblEmployeeID.setText("Employee's ID:");
+        lblEmployeeID.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblEmployeeID.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblEmployeeID.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        lblTitle1.setFont(new java.awt.Font("Candara", 3, 18)); // NOI18N
+        lblTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle1.setText("Equipment Management");
+        lblTitle1.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblTitle1.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblTitle1.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        javax.swing.GroupLayout pnlRecordsLayout = new javax.swing.GroupLayout(pnlRecords);
+        pnlRecords.setLayout(pnlRecordsLayout);
+        pnlRecordsLayout.setHorizontalGroup(
+            pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRecordsLayout.createSequentialGroup()
+                .addGroup(pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRecordsLayout.createSequentialGroup()
+                        .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlRecordsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(textEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(162, 162, 162))
+            .addGroup(pnlRecordsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(textEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlRecordsLayout.setVerticalGroup(
+            pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRecordsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+
+        pnlTransaction.setBackground(new java.awt.Color(204, 204, 204));
+        pnlTransaction.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        rdoBtnCheckin.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        rdoBtnCheckin.setForeground(new java.awt.Color(51, 51, 51));
+        rdoBtnCheckin.setText("Check In");
+        rdoBtnCheckin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rdoBtnCheckin.addActionListener(this::rdoBtnCheckinActionPerformed);
+
+        rdoBtnCheckout.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        rdoBtnCheckout.setForeground(new java.awt.Color(51, 51, 51));
+        rdoBtnCheckout.setText("Check Out");
+        rdoBtnCheckout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rdoBtnCheckout.addActionListener(this::rdoBtnCheckoutActionPerformed);
+
+        lblTransactionType.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTransactionType.setForeground(new java.awt.Color(51, 51, 51));
+        lblTransactionType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTransactionType.setText("Transaction Info");
+        lblTransactionType.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblTransactionType.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblTransactionType.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        checkDamaged.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        checkDamaged.setForeground(new java.awt.Color(51, 51, 51));
+        checkDamaged.setText("Damaged ?");
+        checkDamaged.setToolTipText("");
+        checkDamaged.addActionListener(this::checkDamagedActionPerformed);
+
+        btnSubmitEquipmentTransaction.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnSubmitEquipmentTransaction.setText("Submit");
+        btnSubmitEquipmentTransaction.addActionListener(this::btnSubmitEquipmentTransactionActionPerformed);
+
+        javax.swing.GroupLayout pnlTransactionLayout = new javax.swing.GroupLayout(pnlTransaction);
+        pnlTransaction.setLayout(pnlTransactionLayout);
+        pnlTransactionLayout.setHorizontalGroup(
+            pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTransactionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdoBtnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdoBtnCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblTransactionType, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSubmitEquipmentTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkDamaged, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        pnlTransactionLayout.setVerticalGroup(
+            pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTransactionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTransactionType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdoBtnCheckin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdoBtnCheckout)
+                .addGap(58, 58, 58)
+                .addComponent(checkDamaged)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addComponent(btnSubmitEquipmentTransaction)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlEquipmentLayout = new javax.swing.GroupLayout(pnlEquipment);
+        pnlEquipment.setLayout(pnlEquipmentLayout);
+        pnlEquipmentLayout.setHorizontalGroup(
+            pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEquipmentLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(pnlTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        pnlEquipmentLayout.setVerticalGroup(
+            pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEquipmentLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>                        
 
+    private void rdoBtnCheckinActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO
+        // verify equipment not checked in already
+        // set transaction type to checkin
+    }                                             
+
+    private void rdoBtnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO
+        // verify equipment not checked out already
+        // set transaction type to checkout
+    }                                              
+
+    private void checkDamagedActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO
+        // if checked, update record in db
+    }                                            
+
+    private void btnSubmitEquipmentTransactionActionPerformed(java.awt.event.ActionEvent evt) {                                                              
+        // TODO
+        // validate input boxes / buttons
+        // create report for transaction
+        // return report / id for report
+    }                                                             
+
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton btnSubmitEquipmentTransaction;
+    private javax.swing.JCheckBox checkDamaged;
+    private javax.swing.JLabel lblEmployeeID;
+    private javax.swing.JLabel lblEquipmentID;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTransactionType;
+    private javax.swing.JPanel pnlEquipment;
+    private javax.swing.JPanel pnlRecords;
+    private javax.swing.JPanel pnlTransaction;
+    private javax.swing.JRadioButton rdoBtnCheckin;
+    private javax.swing.JRadioButton rdoBtnCheckout;
+    private javax.swing.JTextField textEmployeeID;
+    private javax.swing.JTextField textEquipmentID;
     // End of variables declaration                   
 }

@@ -6,12 +6,12 @@ package com.devry.ecsproject.BusinessLayer;
 
 /**
  *
- * @author Brittany Weisbeck
+ * @author Jordan
  */
 public class ReportsGUI extends javax.swing.JPanel {
 
     /**
-     * Creates new form ReportGUI
+     * Creates new form EmployeePanel
      */
     public ReportsGUI() {
         initComponents();
@@ -26,21 +26,86 @@ public class ReportsGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        setPreferredSize(new java.awt.Dimension(400, 100));
+        pnlReports = new javax.swing.JPanel();
+        tabPaneReportsOptions = new javax.swing.JTabbedPane();
+        pnlGenerateReport = new javax.swing.JPanel();
+        pnlCreateReportTemplate = new javax.swing.JPanel();
+
+        pnlReports.setBackground(new java.awt.Color(204, 204, 204));
+
+        pnlGenerateReport.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout pnlGenerateReportLayout = new javax.swing.GroupLayout(pnlGenerateReport);
+        pnlGenerateReport.setLayout(pnlGenerateReportLayout);
+        pnlGenerateReportLayout.setHorizontalGroup(
+            pnlGenerateReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 529, Short.MAX_VALUE)
+        );
+        pnlGenerateReportLayout.setVerticalGroup(
+            pnlGenerateReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 293, Short.MAX_VALUE)
+        );
+
+        tabPaneReportsOptions.addTab("Generate Report", pnlGenerateReport);
+
+        pnlCreateReportTemplate.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout pnlCreateReportTemplateLayout = new javax.swing.GroupLayout(pnlCreateReportTemplate);
+        pnlCreateReportTemplate.setLayout(pnlCreateReportTemplateLayout);
+        pnlCreateReportTemplateLayout.setHorizontalGroup(
+            pnlCreateReportTemplateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 529, Short.MAX_VALUE)
+        );
+        pnlCreateReportTemplateLayout.setVerticalGroup(
+            pnlCreateReportTemplateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 293, Short.MAX_VALUE)
+        );
+
+        tabPaneReportsOptions.addTab("Create Template", pnlCreateReportTemplate);
+
+        javax.swing.GroupLayout pnlReportsLayout = new javax.swing.GroupLayout(pnlReports);
+        pnlReports.setLayout(pnlReportsLayout);
+        pnlReportsLayout.setHorizontalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsLayout.createSequentialGroup()
+                .addComponent(tabPaneReportsOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        pnlReportsLayout.setVerticalGroup(
+            pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlReportsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabPaneReportsOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 515, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlReports, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 335, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(pnlReports, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>                        
 
 
     // Variables declaration - do not modify                     
+    private javax.swing.JPanel pnlCreateReportTemplate;
+    private javax.swing.JPanel pnlGenerateReport;
+    private javax.swing.JPanel pnlReports;
+    private javax.swing.JTabbedPane tabPaneReportsOptions;
     // End of variables declaration                   
 }
