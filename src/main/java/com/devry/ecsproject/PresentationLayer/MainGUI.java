@@ -33,6 +33,7 @@ public class MainGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupEquipmentTransaction = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlLoginGUI = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
@@ -42,6 +43,19 @@ public class MainGUI extends javax.swing.JFrame {
         textEmpId = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         lblLoginError = new javax.swing.JLabel();
+        pnlEquipment = new javax.swing.JPanel();
+        pnlRecords = new javax.swing.JPanel();
+        textEmployeeID = new javax.swing.JTextField();
+        textEquipmentID = new javax.swing.JTextField();
+        lblEquipmentID = new javax.swing.JLabel();
+        lblEmployeeID = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        pnlTransaction = new javax.swing.JPanel();
+        rdoBtnCheckin = new javax.swing.JRadioButton();
+        rdoBtnCheckout = new javax.swing.JRadioButton();
+        lblTransactionType = new javax.swing.JLabel();
+        checkDamaged = new javax.swing.JCheckBox();
+        btnSubmitEquipmentTransaction = new javax.swing.JButton();
         mnbMain = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mniExit = new javax.swing.JMenuItem();
@@ -99,26 +113,22 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnlLoginGUILayout.createSequentialGroup()
+                .addGap(150, 150, 150)
                 .addGroup(pnlLoginGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlLoginGUILayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
                         .addComponent(lblEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(textEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlLoginGUILayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
                         .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(150, 150, 150))
             .addGroup(pnlLoginGUILayout.createSequentialGroup()
+                .addGap(200, 200, 200)
                 .addGroup(pnlLoginGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlLoginGUILayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlLoginGUILayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(lblLoginError, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLoginError, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlLoginGUILayout.setVerticalGroup(
@@ -141,9 +151,160 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
-        lblTitle.getAccessibleContext().setAccessibleName("GB Manufacturing");
-
         jTabbedPane1.addTab("User Login", pnlLoginGUI);
+
+        pnlEquipment.setBackground(new java.awt.Color(204, 204, 204));
+
+        pnlRecords.setBackground(new java.awt.Color(204, 204, 204));
+
+        lblEquipmentID.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblEquipmentID.setForeground(new java.awt.Color(51, 51, 51));
+        lblEquipmentID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblEquipmentID.setText("Equipment Code:");
+        lblEquipmentID.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblEquipmentID.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblEquipmentID.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        lblEmployeeID.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblEmployeeID.setForeground(new java.awt.Color(51, 51, 51));
+        lblEmployeeID.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblEmployeeID.setText("Employee's ID:");
+        lblEmployeeID.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblEmployeeID.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblEmployeeID.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        lblTitle1.setFont(new java.awt.Font("Candara", 3, 18)); // NOI18N
+        lblTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle1.setText("Equipment Management");
+        lblTitle1.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblTitle1.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblTitle1.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        javax.swing.GroupLayout pnlRecordsLayout = new javax.swing.GroupLayout(pnlRecords);
+        pnlRecords.setLayout(pnlRecordsLayout);
+        pnlRecordsLayout.setHorizontalGroup(
+            pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRecordsLayout.createSequentialGroup()
+                .addGroup(pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRecordsLayout.createSequentialGroup()
+                        .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(pnlRecordsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(textEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(162, 162, 162))
+            .addGroup(pnlRecordsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(textEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlRecordsLayout.setVerticalGroup(
+            pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlRecordsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEquipmentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlRecordsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        pnlTransaction.setBackground(new java.awt.Color(204, 204, 204));
+        pnlTransaction.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnGroupEquipmentTransaction.add(rdoBtnCheckin);
+        rdoBtnCheckin.setForeground(new java.awt.Color(51, 51, 51));
+        rdoBtnCheckin.setText("Check In");
+        rdoBtnCheckin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rdoBtnCheckin.addActionListener(this::rdoBtnCheckinActionPerformed);
+
+        btnGroupEquipmentTransaction.add(rdoBtnCheckout);
+        rdoBtnCheckout.setForeground(new java.awt.Color(51, 51, 51));
+        rdoBtnCheckout.setText("Check Out");
+        rdoBtnCheckout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        rdoBtnCheckout.addActionListener(this::rdoBtnCheckoutActionPerformed);
+
+        lblTransactionType.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblTransactionType.setForeground(new java.awt.Color(51, 51, 51));
+        lblTransactionType.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTransactionType.setText("Transaction Info");
+        lblTransactionType.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblTransactionType.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblTransactionType.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        checkDamaged.setForeground(new java.awt.Color(51, 51, 51));
+        checkDamaged.setText("Damaged ?");
+        checkDamaged.setToolTipText("");
+        checkDamaged.addActionListener(this::checkDamagedActionPerformed);
+
+        btnSubmitEquipmentTransaction.setText("Submit");
+        btnSubmitEquipmentTransaction.addActionListener(this::btnSubmitEquipmentTransactionActionPerformed);
+
+        javax.swing.GroupLayout pnlTransactionLayout = new javax.swing.GroupLayout(pnlTransaction);
+        pnlTransaction.setLayout(pnlTransactionLayout);
+        pnlTransactionLayout.setHorizontalGroup(
+            pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTransactionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdoBtnCheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdoBtnCheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblTransactionType, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSubmitEquipmentTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkDamaged, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        pnlTransactionLayout.setVerticalGroup(
+            pnlTransactionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTransactionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTransactionType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdoBtnCheckin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdoBtnCheckout)
+                .addGap(58, 58, 58)
+                .addComponent(checkDamaged)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addComponent(btnSubmitEquipmentTransaction)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlEquipmentLayout = new javax.swing.GroupLayout(pnlEquipment);
+        pnlEquipment.setLayout(pnlEquipmentLayout);
+        pnlEquipmentLayout.setHorizontalGroup(
+            pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEquipmentLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(pnlTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        pnlEquipmentLayout.setVerticalGroup(
+            pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEquipmentLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlEquipmentLayout.createSequentialGroup()
+                        .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Equipment", pnlEquipment);
 
         mnbMain.setBackground(new java.awt.Color(51, 51, 51));
         mnbMain.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -237,21 +398,54 @@ public class MainGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void rdoBtnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoBtnCheckoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoBtnCheckoutActionPerformed
+
+    private void rdoBtnCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoBtnCheckinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoBtnCheckinActionPerformed
+
+    private void checkDamagedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkDamagedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkDamagedActionPerformed
+
+    private void btnSubmitEquipmentTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitEquipmentTransactionActionPerformed
+        // TODO
+        // validate input boxes / buttons
+        // create report for transaction
+        // return report / id for report
+    }//GEN-LAST:event_btnSubmitEquipmentTransactionActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGroupEquipmentTransaction;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnSubmitEquipmentTransaction;
+    private javax.swing.JCheckBox checkDamaged;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmpId;
+    private javax.swing.JLabel lblEmployeeID;
+    private javax.swing.JLabel lblEquipmentID;
     private javax.swing.JLabel lblLoginError;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTransactionType;
     private javax.swing.JMenuBar mnbMain;
     private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenu mnuFile;
+    private javax.swing.JPanel pnlEquipment;
     private javax.swing.JPanel pnlLoginGUI;
+    private javax.swing.JPanel pnlRecords;
+    private javax.swing.JPanel pnlTransaction;
+    private javax.swing.JRadioButton rdoBtnCheckin;
+    private javax.swing.JRadioButton rdoBtnCheckout;
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textEmpId;
+    private javax.swing.JTextField textEmployeeID;
+    private javax.swing.JTextField textEquipmentID;
     // End of variables declaration//GEN-END:variables
 
     
