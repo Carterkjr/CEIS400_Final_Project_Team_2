@@ -61,6 +61,23 @@ public class MainGUI extends javax.swing.JFrame {
         pnlEmployeeOptions = new javax.swing.JPanel();
         tabPaneEmployeeSupervision = new javax.swing.JTabbedPane();
         panelViewEmployee = new javax.swing.JPanel();
+        pnlViewEmployeeInput = new javax.swing.JPanel();
+        lblEmployeeID1 = new javax.swing.JLabel();
+        inputIDViewEmployee = new javax.swing.JTextField();
+        btnViewEmplyoeeSubmit = new javax.swing.JButton();
+        pnlViewEmployeeResults = new javax.swing.JPanel();
+        lblViewEmployeeName = new javax.swing.JLabel();
+        lblViewEmployeeEmail = new javax.swing.JLabel();
+        lblViewEmployeeEmail1 = new javax.swing.JLabel();
+        lblViewEmployeeEmail2 = new javax.swing.JLabel();
+        lblViewEmployeeEmail3 = new javax.swing.JLabel();
+        lblViewEmployeeEmail4 = new javax.swing.JLabel();
+        textViewEmployeeName = new javax.swing.JTextField();
+        textViewEmployeeEmail = new javax.swing.JTextField();
+        textViewEmployeeName2 = new javax.swing.JTextField();
+        textViewEmployeeName3 = new javax.swing.JTextField();
+        textViewEmployeeName4 = new javax.swing.JTextField();
+        textViewEmployeeName5 = new javax.swing.JTextField();
         panelHireEmployee = new javax.swing.JPanel();
         panelTerminateEmployee = new javax.swing.JPanel();
         pnlReports = new javax.swing.JPanel();
@@ -157,7 +174,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(pnlLoginBoxesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmpId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLoginError, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,7 +323,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addComponent(rdoBtnCheckout)
                 .addGap(58, 58, 58)
                 .addComponent(checkDamaged)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(btnSubmitEquipmentTransaction)
                 .addContainerGap())
         );
@@ -316,22 +333,20 @@ public class MainGUI extends javax.swing.JFrame {
         pnlEquipmentLayout.setHorizontalGroup(
             pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEquipmentLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(pnlTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlEquipmentLayout.setVerticalGroup(
             pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEquipmentLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(pnlEquipmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlTransaction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlEquipmentLayout.createSequentialGroup()
-                        .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(pnlRecords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlTransaction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         tabPaneUIOptions.addTab("Equipment", pnlEquipment);
@@ -342,15 +357,177 @@ public class MainGUI extends javax.swing.JFrame {
 
         pnlEmployeeOptions.setBackground(new java.awt.Color(204, 204, 204));
 
+        pnlViewEmployeeInput.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblEmployeeID1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblEmployeeID1.setForeground(new java.awt.Color(51, 51, 51));
+        lblEmployeeID1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblEmployeeID1.setText("Employee's ID:");
+        lblEmployeeID1.setMaximumSize(new java.awt.Dimension(160, 25));
+        lblEmployeeID1.setMinimumSize(new java.awt.Dimension(160, 25));
+        lblEmployeeID1.setPreferredSize(new java.awt.Dimension(160, 25));
+
+        btnViewEmplyoeeSubmit.setText("Submit");
+
+        javax.swing.GroupLayout pnlViewEmployeeInputLayout = new javax.swing.GroupLayout(pnlViewEmployeeInput);
+        pnlViewEmployeeInput.setLayout(pnlViewEmployeeInputLayout);
+        pnlViewEmployeeInputLayout.setHorizontalGroup(
+            pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                .addGroup(pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(inputIDViewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(btnViewEmplyoeeSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblEmployeeID1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        pnlViewEmployeeInputLayout.setVerticalGroup(
+            pnlViewEmployeeInputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeInputLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(lblEmployeeID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(inputIDViewEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnViewEmplyoeeSubmit)
+                .addGap(55, 55, 55))
+        );
+
+        btnViewEmplyoeeSubmit.getAccessibleContext().setAccessibleName("Submit Button");
+
+        pnlViewEmployeeResults.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblViewEmployeeName.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeName.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeName.setText("Name");
+
+        lblViewEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeEmail.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeEmail.setText("Email");
+
+        lblViewEmployeeEmail1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeEmail1.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeEmail1.setText("Hire Date");
+
+        lblViewEmployeeEmail2.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeEmail2.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeEmail2.setText("Role");
+
+        lblViewEmployeeEmail3.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeEmail3.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeEmail3.setText("Department");
+
+        lblViewEmployeeEmail4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        lblViewEmployeeEmail4.setForeground(new java.awt.Color(51, 51, 51));
+        lblViewEmployeeEmail4.setText("Access Level");
+
+        textViewEmployeeName.setEditable(false);
+        textViewEmployeeName.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeName.setText("John Doe");
+        textViewEmployeeName.setFocusable(false);
+
+        textViewEmployeeEmail.setEditable(false);
+        textViewEmployeeEmail.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeEmail.setText("jdoe555@email.com");
+        textViewEmployeeEmail.setFocusable(false);
+
+        textViewEmployeeName2.setEditable(false);
+        textViewEmployeeName2.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeName2.setText("12-31-1999");
+        textViewEmployeeName2.setFocusable(false);
+
+        textViewEmployeeName3.setEditable(false);
+        textViewEmployeeName3.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeName3.setText("Worker");
+        textViewEmployeeName3.setFocusable(false);
+
+        textViewEmployeeName4.setEditable(false);
+        textViewEmployeeName4.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeName4.setText("Maintenance");
+        textViewEmployeeName4.setFocusable(false);
+
+        textViewEmployeeName5.setEditable(false);
+        textViewEmployeeName5.setBackground(new java.awt.Color(225, 225, 225));
+        textViewEmployeeName5.setText("1");
+        textViewEmployeeName5.setFocusable(false);
+
+        javax.swing.GroupLayout pnlViewEmployeeResultsLayout = new javax.swing.GroupLayout(pnlViewEmployeeResults);
+        pnlViewEmployeeResults.setLayout(pnlViewEmployeeResultsLayout);
+        pnlViewEmployeeResultsLayout.setHorizontalGroup(
+            pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeResultsLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblViewEmployeeEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeEmail1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeEmail2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeEmail3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(lblViewEmployeeEmail4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textViewEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeName2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeName3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeName4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textViewEmployeeName5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        pnlViewEmployeeResultsLayout.setVerticalGroup(
+            pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlViewEmployeeResultsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblViewEmployeeName)
+                    .addComponent(textViewEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblViewEmployeeEmail)
+                    .addComponent(textViewEmployeeEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblViewEmployeeEmail1)
+                    .addComponent(textViewEmployeeName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblViewEmployeeEmail2)
+                    .addComponent(textViewEmployeeName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblViewEmployeeEmail3)
+                    .addComponent(textViewEmployeeName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlViewEmployeeResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblViewEmployeeEmail4)
+                    .addComponent(textViewEmployeeName5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelViewEmployeeLayout = new javax.swing.GroupLayout(panelViewEmployee);
         panelViewEmployee.setLayout(panelViewEmployeeLayout);
         panelViewEmployeeLayout.setHorizontalGroup(
             panelViewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelViewEmployeeLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(pnlViewEmployeeInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(pnlViewEmployeeResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         panelViewEmployeeLayout.setVerticalGroup(
             panelViewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelViewEmployeeLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelViewEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlViewEmployeeResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlViewEmployeeInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         tabPaneEmployeeSupervision.addTab("View Employee", panelViewEmployee);
@@ -410,7 +587,7 @@ public class MainGUI extends javax.swing.JFrame {
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlEmployeeOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(pnlEmployeeOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 322, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -426,7 +603,7 @@ public class MainGUI extends javax.swing.JFrame {
         );
         pnlReportsLayout.setVerticalGroup(
             pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         tabPaneUIOptions.addTab("Reports", pnlReports);
@@ -455,13 +632,11 @@ public class MainGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tabPaneUIOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tabPaneUIOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 322, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(tabPaneUIOptions)
         );
 
         tabPaneUIOptions.getAccessibleContext().setAccessibleName("TabbedPane");
@@ -556,15 +731,24 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroupEquipmentTransaction;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSubmitEquipmentTransaction;
+    private javax.swing.JButton btnViewEmplyoeeSubmit;
     private javax.swing.JCheckBox checkDamaged;
+    private javax.swing.JTextField inputIDViewEmployee;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmpId;
     private javax.swing.JLabel lblEmployeeID;
+    private javax.swing.JLabel lblEmployeeID1;
     private javax.swing.JLabel lblEquipmentID;
     private javax.swing.JLabel lblLoginError;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTransactionType;
+    private javax.swing.JLabel lblViewEmployeeEmail;
+    private javax.swing.JLabel lblViewEmployeeEmail1;
+    private javax.swing.JLabel lblViewEmployeeEmail2;
+    private javax.swing.JLabel lblViewEmployeeEmail3;
+    private javax.swing.JLabel lblViewEmployeeEmail4;
+    private javax.swing.JLabel lblViewEmployeeName;
     private javax.swing.JMenuBar mnbMain;
     private javax.swing.JMenuItem mniExit;
     private javax.swing.JMenu mnuFile;
@@ -579,6 +763,8 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRecords;
     private javax.swing.JPanel pnlReports;
     private javax.swing.JPanel pnlTransaction;
+    private javax.swing.JPanel pnlViewEmployeeInput;
+    private javax.swing.JPanel pnlViewEmployeeResults;
     private javax.swing.JRadioButton rdoBtnCheckin;
     private javax.swing.JRadioButton rdoBtnCheckout;
     private javax.swing.JTabbedPane tabPaneEmployeeSupervision;
@@ -587,6 +773,12 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTextField textEmpId;
     private javax.swing.JTextField textEmployeeID;
     private javax.swing.JTextField textEquipmentID;
+    private javax.swing.JTextField textViewEmployeeEmail;
+    private javax.swing.JTextField textViewEmployeeName;
+    private javax.swing.JTextField textViewEmployeeName2;
+    private javax.swing.JTextField textViewEmployeeName3;
+    private javax.swing.JTextField textViewEmployeeName4;
+    private javax.swing.JTextField textViewEmployeeName5;
     // End of variables declaration//GEN-END:variables
 
     
