@@ -5,6 +5,8 @@
 
 package com.devry.ecsproject.DataLayer;
 
+import com.devry.ecsproject.BusinessLayer.DBConnect;
+
 public class Equipment {
 
     private int equipmentID;
@@ -19,6 +21,16 @@ public class Equipment {
         this.type = type;
         this.damage = damage;
         this.available = available;
+    }
+
+    public void updateEquipment() {
+        String sqlQuery = "UPDATE equipment SET name = '" + getName() + "', type = '" + getType() + "', damage = " + isDamage() + ", available = " + isAvailable() + " WHERE equipmentID = " + getEquipmentID() + ";";
+        DBConnect.saveData("equipment", sqlQuery);
+    }
+
+    public void getLastServiceDate() {
+        String sqlQuery = "SELECT MAX(transactionDate) FROM transactions WHERE equipmentID = " + getEquipmentID() + " AND type = 'maintenance';";
+        DBConnect.getData("transactions", sqlQuery);
     }
 
     public int getEquipmentID() {

@@ -16,7 +16,7 @@ public class DBConnect {
         } 
     }
 
-    public static void loadData(String table, String userQuery) {
+    public static void getData(String table, String userQuery) {
         try {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
