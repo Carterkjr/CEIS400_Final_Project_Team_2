@@ -19,7 +19,6 @@ public class DBConnect {
     public static void getData(String table, String userQuery) {
         try {
             Connection conn = DriverManager.getConnection(url);
-            Statement stmt = conn.createStatement();
             PreparedStatement query = conn.prepareStatement(userQuery);
             ResultSet rs = query.executeQuery();
             while(rs.next()) {
@@ -34,7 +33,6 @@ public class DBConnect {
     public static void saveData(String table, String userUpdate) {
         try {
             Connection conn = DriverManager.getConnection(url);
-            Statement stmt = conn.createStatement();
             PreparedStatement update = conn.prepareStatement(userUpdate);
             update.executeUpdate();
             

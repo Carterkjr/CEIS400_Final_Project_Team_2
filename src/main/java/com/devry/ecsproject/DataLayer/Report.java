@@ -4,6 +4,8 @@
 //With Getter and Setters
 package com.devry.ecsproject.DataLayer;
 
+import com.devry.ecsproject.BusinessLayer.DBConnect;
+
 //Importing Java Date Library, for Data manage
 import java.util.Date;
 
@@ -19,6 +21,11 @@ public class Report {
         this.reportType = reportType;
         this.date = date;
         this.reportText = reportText;
+    }
+
+    public void getReport() {
+        String sqlQuery = "SELECT * FROM reports WHERE reportID = " + getReportID() + ";";
+        DBConnect.getData("reports", sqlQuery);
     }
 
     public int getReportID() {
