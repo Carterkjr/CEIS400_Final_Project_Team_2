@@ -4,6 +4,11 @@
 
 package com.devry.ecsproject;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import com.devry.ecsproject.BusinessLayer.DBConnect;
+
 /**
  *
  * @author ASUS

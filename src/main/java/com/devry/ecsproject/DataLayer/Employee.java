@@ -37,6 +37,7 @@ public class Employee {
         this.equipmentHistory = equipmentHistory;
     }
 
+    // GETTERS AND SETTERS
     public int getEmployeeID() {
         return employeeID;
     }
