@@ -20,14 +20,20 @@ public class ReportGUIService {
     }
     
     public Report getReportByID(int reportID){
-        // TODO get report from database from report's ID
+        // TODO 
+        // find report in db
+        // create report object
+        // return
         Date date = new Date();
         Report rep = new Report(0,"Equipment History Report",date,"Employee ID: 41083 checked out equipment on 10/14, 11/17, and 12/24");
         return rep;
     }
     
     public Report createReport(String reportType){
-        // TODO create report from default template and save to DB
+        // TODO 
+        // create report from template type 
+        // add to records DB
+        // return report
         Date date = new Date();
         Report rep = new Report(0,"Equipment History Report",date,"Employee ID: 41083 checked out equipment on 10/14, 11/17, and 12/24");
         return rep;

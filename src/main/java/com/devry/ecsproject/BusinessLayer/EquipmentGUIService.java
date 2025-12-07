@@ -21,18 +21,27 @@ public class EquipmentGUIService {
 
 
     public Equipment getEquipmentByID(int equipmentID) {
-        // TODO Get equipment from database and return
+        // TODO
+        // Get equipment from database 
+        // add to equipment object
         Equipment equipment;
         equipment = new Equipment(0,"Cordless Drill","Power Tools",false,true);
+        // return equipment
         return equipment;
     }
     
     public void setDamageStatus(boolean damaged){
-        // TODO update damage status for equipment in DB
+        // TODO 
+        // find equipment in db
+        // update damage status
+        // create damage report
     }
     
     public void setAvailability(boolean available){
-        // TODO update available status for equipment in DB
+        // TODO 
+        // find equipment in db
+        // update available status 
+        // create transaction report
     }
 
    

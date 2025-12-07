@@ -22,18 +22,24 @@ public class EmployeeGUIService {
 
 
     public Employee getEmployeeByID(int employeeID) {
-        // TODO Get employe from database,  build employee object, and return.
+        // TODO
+        // Get employe from database
+        // build employee object
         Date temp = new Date();
         List equipmentHistory = new ArrayList();
         Employee emp = new Employee(0,"John","Doe",temp,true,
                 "Worker",1,"Maintenance",equipmentHistory);
+        // return
+
         
         return emp;
     }
  
 
       public List getEmployeeEquipmentHistory(){
-        // TODO Get employee from database and return department
+        // TODO 
+        // Get employee from database 
+        // then return history
         List<String> employeeEquipmentHistory;
         employeeEquipmentHistory = new ArrayList();
         return employeeEquipmentHistory;
@@ -41,15 +47,23 @@ public class EmployeeGUIService {
 
       
       public int employeeHired(Employee emp ){
-        // TODO Add employee to database, create report, and return id code for success or failure
-        int result = 0;
-        return result;
+        // TODO
+        // create employee object from UI with name, email, etc
+        // add employee to database
+        // create report
+        // return report id
+        int resultID = 0;
+        return resultID;
     }
 
       
       public int employeeFired(Employee emp ){
-        // TODO Remove employee from database, create report, and return id code for success or failure
-        int result = 0;
-        return result;
+        // TODO 
+        // Find employee in database
+        // Remove employee 
+        // create report
+        // return id code 
+        int resultID = 0;
+        return resultID;
     }
 } // end of EmployeeGUIService
