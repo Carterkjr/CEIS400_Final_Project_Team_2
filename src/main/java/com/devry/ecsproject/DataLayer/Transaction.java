@@ -5,6 +5,7 @@
 package com.devry.ecsproject.DataLayer;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import com.devry.ecsproject.BusinessLayer.DBConnect;
 
 /**
@@ -28,7 +29,9 @@ public class Transaction {
     }
 
     public void recordTransaction(){
-        String sqlQuery = "INSERT INTO transactions (equipmentID, employeeID, type, transactionDate) VALUES (" + getEquipmentID() + ", " + getEmployeeID() + ", '" + getType() + "', " + getTransactionDate() + ");";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = dateFormat.format(getTransactionDate());
+        String sqlQuery = "INSERT INTO transactions (equipmentID, employeeID, type, transactionDate) VALUES (" + getEquipmentID() + ", " + getEmployeeID() + ", '" + getType() + "', '" + formattedDate + "');";
         DBConnect.saveData("transactions", sqlQuery);
         System.out.println("TRANSACTION RECORDED\n---------------------------\nEmpID: " + getEmployeeID() + "\nEquipID: " + getEquipmentID() + "\nType: " + getType());
     }

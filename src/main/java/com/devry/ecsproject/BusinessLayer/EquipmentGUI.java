@@ -4,17 +4,26 @@
  */
 package com.devry.ecsproject.BusinessLayer;
 
+import com.devry.ecsproject.DataLayer.Equipment;
+import com.devry.ecsproject.DataLayer.Transaction;
+import java.util.Date;
+
 /**
  *
  * @author Jordan
  */
 public class EquipmentGUI extends javax.swing.JPanel {
+    
+    private EquipmentGUIService equipmentService;
+    private String transactionType = "";
+    private boolean isDamaged = false;
 
     /**
      * Creates new form EquipmentPanel
      */
     public EquipmentGUI() {
         initComponents();
+        equipmentService = new EquipmentGUIService();
     }
 
     /**
@@ -218,27 +227,64 @@ public class EquipmentGUI extends javax.swing.JPanel {
     }// </editor-fold>                        
 
     private void rdoBtnCheckinActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO
-        // verify equipment not checked in already
-        // set transaction type to checkin
+        transactionType = "checkin";
+        rdoBtnCheckout.setSelected(false);
     }                                             
 
     private void rdoBtnCheckoutActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO
-        // verify equipment not checked out already
-        // set transaction type to checkout
+        transactionType = "checkout";
+        rdoBtnCheckin.setSelected(false);
     }                                              
 
     private void checkDamagedActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO
-        // if checked, update record in db
+        isDamaged = checkDamaged.isSelected();
     }                                            
 
     private void btnSubmitEquipmentTransactionActionPerformed(java.awt.event.ActionEvent evt) {                                                              
-        // TODO
-        // validate input boxes / buttons
-        // create report for transaction
-        // return report / id for report
+        try {
+            int equipmentID = Integer.parseInt(textEquipmentID.getText());
+            int employeeID = Integer.parseInt(textEmployeeID.getText());
+            
+            if (transactionType.isEmpty()) {
+                System.out.println("ERROR: Please select Check In or Check Out");
+                return;
+            }
+            
+            Equipment equipment = equipmentService.getEquipmentByID(equipmentID);
+            
+            if (isDamaged) {
+                equipment.setDamage(true);
+                equipmentService.setDamageStatus(true);
+            }
+            
+            boolean isAvailable = transactionType.equals("checkin");
+            equipment.setAvailable(isAvailable);
+            equipmentService.setAvailability(isAvailable);
+            
+            Date transactionDate = new Date();
+            
+            // Only save to database if USE_DATABASE is true
+            if (EquipmentGUIService.isUsingDatabase()) {
+                Transaction transaction = new Transaction(0, equipmentID, employeeID, transactionType, transactionDate);
+                transaction.recordTransaction();
+            }
+            
+            EquipmentGUIService.addTransaction(equipmentID, employeeID, transactionType, transactionDate);
+            
+            System.out.println("Transaction completed successfully!");
+            System.out.println("NOTE: Make sure Equipment ID " + equipmentID + " and Employee ID " + employeeID + " exist in the database.");
+            
+            textEquipmentID.setText("");
+            textEmployeeID.setText("");
+            rdoBtnCheckin.setSelected(false);
+            rdoBtnCheckout.setSelected(false);
+            checkDamaged.setSelected(false);
+            transactionType = "";
+            isDamaged = false;
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid ID format");
+        }
     }                                                             
 
 

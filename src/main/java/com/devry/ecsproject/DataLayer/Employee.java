@@ -9,6 +9,8 @@ package com.devry.ecsproject.DataLayer;
 //List and Data for Java Complex Control for History Based on the employee
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import com.devry.ecsproject.BusinessLayer.DBConnect;
 
 public class Employee {
 
@@ -35,6 +37,33 @@ public class Employee {
         this.accessLevel = accessLevel;
         this.department = department;
         this.equipmentHistory = equipmentHistory;
+    }
+    
+    public void addEmployee() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(getHireDate());
+        String fullName = getFirstName() + " " + getLastName();
+        String email = getFirstName().toLowerCase() + "." + getLastName().toLowerCase() + "@company.com";
+        
+        String sqlQuery = "INSERT INTO employees (employeeID, name, email, hireDate, activeEmployee, role, accessLevel, department) VALUES (" + 
+                         getEmployeeID() + ", '" + fullName + "', '" + email + "', '" + formattedDate + "', " + 
+                         (isActiveEmployee() ? 1 : 0) + ", '" + getRole() + "', " + getAccessLevel() + ", '" + getDepartment() + "');";
+        DBConnect.saveData("employees", sqlQuery);
+        System.out.println("EMPLOYEE ADDED\n---------------------------\nEmpID: " + getEmployeeID() + "\nName: " + fullName + "\nRole: " + getRole());
+    }
+    
+    public void updateEmployee() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(getHireDate());
+        String fullName = getFirstName() + " " + getLastName();
+        String email = getFirstName().toLowerCase() + "." + getLastName().toLowerCase() + "@company.com";
+        
+        String sqlQuery = "UPDATE employees SET name = '" + fullName + "', email = '" + email + "', hireDate = '" + formattedDate + 
+                         "', activeEmployee = " + (isActiveEmployee() ? 1 : 0) + ", role = '" + getRole() + 
+                         "', accessLevel = " + getAccessLevel() + ", department = '" + getDepartment() + 
+                         "' WHERE employeeID = " + getEmployeeID() + ";";
+        DBConnect.saveData("employees", sqlQuery);
+        System.out.println("EMPLOYEE UPDATED\n---------------------------\nEmpID: " + getEmployeeID() + "\nName: " + fullName);
     }
 
     // GETTERS AND SETTERS

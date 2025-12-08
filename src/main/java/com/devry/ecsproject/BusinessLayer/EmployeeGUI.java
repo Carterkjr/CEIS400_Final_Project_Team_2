@@ -4,17 +4,22 @@
  */
 package com.devry.ecsproject.BusinessLayer;
 
+import com.devry.ecsproject.DataLayer.Employee;
+
 /**
  *
  * @author Jordan
  */
 public class EmployeeGUI extends javax.swing.JPanel {
+    
+    private EmployeeGUIService employeeService;
 
     /**
      * Creates new form EmployeePanel
      */
     public EmployeeGUI() {
         initComponents();
+        employeeService = new EmployeeGUIService();
     }
 
     /**
@@ -680,27 +685,68 @@ public class EmployeeGUI extends javax.swing.JPanel {
     }// </editor-fold>                        
 
     private void btnViewEmplyoeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        // TODO
-        // retrieve employee information from db
-        // show on screen in pnlViewEmployeeResults
+        try {
+            int employeeID = Integer.parseInt(inputIDViewEmployee.getText());
+            Employee emp = employeeService.getEmployeeByID(employeeID);
+            
+            textViewEmployeeName.setText(emp.getFirstName() + " " + emp.getLastName());
+            textViewEmployeeEmail.setText(emp.getFirstName().toLowerCase() + "." + emp.getLastName().toLowerCase() + "@company.com");
+            textViewEmployeeDate.setText(emp.getHireDate().toString());
+            textViewEmployeeRole.setText(emp.getRole());
+            textViewEmployeeDepartment.setText(emp.getDepartment());
+            textViewEmployeeAccess.setText(String.valueOf(emp.getAccessLevel()));
+        } catch (NumberFormatException e) {
+            lblViewEmployeeError.setText("Invalid Employee ID");
+        }
     }                                                     
 
     private void btnHireEmployeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        // TODO
-        // create employee object in db, ensure unique id
-        // create employee hired report
-        // return results
+        try {
+            String name = textHireEmployeeName.getText();
+            String[] nameParts = name.split(" ");
+            String firstName = nameParts.length > 0 ? nameParts[0] : "";
+            String lastName = nameParts.length > 1 ? nameParts[1] : "";
+            String role = textHireEmployeeRole.getText();
+            String department = textHireEmployeeDepartment.getText();
+            int accessLevel = Integer.parseInt(textHireEmployeeAccess.getText());
+            
+            Employee emp = new Employee(0, firstName, lastName, new java.util.Date(), true, 
+                                       role, accessLevel, department, new java.util.ArrayList<>());
+            int reportID = employeeService.employeeHired(emp);
+            
+            txtHireEmployeeResult.setText("Employee hired successfully!\nReport ID: " + reportID);
+        } catch (Exception e) {
+            txtHireEmployeeResult.setText("Error: " + e.getMessage());
+        }
     }                                                     
 
     private void btnTerminateEmplyoeeViewActionPerformed(java.awt.event.ActionEvent evt) {                                                         
-        // TODO
-        // retrieve employee information from db
-        // show on screen in pnlTerminateEmployeeResults
+        try {
+            int employeeID = Integer.parseInt(inputIDTerminateEmployee.getText());
+            Employee emp = employeeService.getEmployeeByID(employeeID);
+            
+            textTerminateEmployeeName.setText(emp.getFirstName() + " " + emp.getLastName());
+            textTerminateEmployeeEmail.setText(emp.getFirstName().toLowerCase() + "." + emp.getLastName().toLowerCase() + "@company.com");
+            textTerminateEmployeeDate.setText(emp.getHireDate().toString());
+            textTerminateEmployeeRole.setText(emp.getRole());
+            textTerminateEmployeeDepartment.setText(emp.getDepartment());
+            textTerminateEmployeeAccess.setText(String.valueOf(emp.getAccessLevel()));
+        } catch (NumberFormatException e) {
+            lblTerminateEmployeeError.setText("Invalid Employee ID");
+        }
     }                                                        
 
     private void btnTerminateEmplyoeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                           
-        // TODO
-        // remove employee from db (or update activeEmployee field?)
+        try {
+            int employeeID = Integer.parseInt(inputIDTerminateEmployee.getText());
+            Employee emp = employeeService.getEmployeeByID(employeeID);
+            emp.setActiveEmployee(false);
+            int reportID = employeeService.employeeFired(emp);
+            
+            lblTerminateEmployeeError.setText("Employee terminated. Report ID: " + reportID);
+        } catch (NumberFormatException e) {
+            lblTerminateEmployeeError.setText("Invalid Employee ID");
+        }
     }                                                          
 
 

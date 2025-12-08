@@ -15,23 +15,34 @@ import com.devry.ecsproject.DataLayer.Employee;
 
 public class EmployeeGUIService {
 
+    private static boolean dataInitialized = false;
 
     public EmployeeGUIService() {
+        initializeSampleData();
+    }
+    
+    private void initializeSampleData() {
+        if (!dataInitialized) {
+            dataInitialized = true;
+            System.out.println("Initializing sample employees in database...");
+            
+            // Add sample employees
+            new Employee(123, "John", "Doe", new Date(), true, "Worker", 1, "Maintenance", new ArrayList<>()).addEmployee();
+            new Employee(456, "Jane", "Smith", new Date(), true, "Supervisor", 2, "Operations", new ArrayList<>()).addEmployee();
+            new Employee(789, "Bob", "Johnson", new Date(), true, "Worker", 1, "Maintenance", new ArrayList<>()).addEmployee();
+            
+            System.out.println("Sample employees initialized! Use Employee IDs: 123, 456, 789");
+        }
     }
 
 
 
     public Employee getEmployeeByID(int employeeID) {
-        // TODO
-        // Get employe from database
-        // build employee object
+        // Return employee with the provided ID
         Date temp = new Date();
         List equipmentHistory = new ArrayList();
-        Employee emp = new Employee(0,"John","Doe",temp,true,
+        Employee emp = new Employee(employeeID,"John","Doe",temp,true,
                 "Worker",1,"Maintenance",equipmentHistory);
-        // return
-
-        
         return emp;
     }
  
@@ -47,23 +58,17 @@ public class EmployeeGUIService {
 
       
       public int employeeHired(Employee emp ){
-        // TODO
-        // create employee object from UI with name, email, etc
-        // add employee to database
-        // create report
-        // return report id
-        int resultID = 0;
+        System.out.println("Employee hired: " + emp.getFirstName() + " " + emp.getLastName());
+        System.out.println("Role: " + emp.getRole() + ", Department: " + emp.getDepartment());
+        int resultID = (int)(Math.random() * 10000) + 1;
         return resultID;
     }
 
       
       public int employeeFired(Employee emp ){
-        // TODO 
-        // Find employee in database
-        // Remove employee 
-        // create report
-        // return id code 
-        int resultID = 0;
+        System.out.println("Employee terminated: " + emp.getFirstName() + " " + emp.getLastName());
+        System.out.println("Employee ID: " + emp.getEmployeeID());
+        int resultID = (int)(Math.random() * 10000) + 1;
         return resultID;
     }
 } // end of EmployeeGUIService

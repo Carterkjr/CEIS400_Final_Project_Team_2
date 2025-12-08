@@ -1,9 +1,11 @@
 package com.devry.ecsproject.BusinessLayer;
 
 import java.sql.*;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class DBConnect {
-    private static final String url = "jdbc:mysql://" + System.getenv("DB_USER") + ":" + System.getenv("DB_PASSWORD") + "@" + System.getenv("DB_HOST") + ":" + System.getenv("DB_PORT") + "/" + System.getenv("DB_NAME");;
+    private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+    private static final String url = "jdbc:mysql://" + dotenv.get("DB_HOST") + ":" + dotenv.get("DB_PORT") + "/" + dotenv.get("DB_NAME") + "?user=" + dotenv.get("DB_USER") + "&password=" + dotenv.get("DB_PASSWORD");
 
     public DBConnect() {
         try {

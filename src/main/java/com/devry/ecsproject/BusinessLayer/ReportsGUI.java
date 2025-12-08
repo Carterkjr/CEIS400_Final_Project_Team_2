@@ -29,21 +29,46 @@ public class ReportsGUI extends javax.swing.JPanel {
         pnlReports = new javax.swing.JPanel();
         tabPaneReportsOptions = new javax.swing.JTabbedPane();
         pnlGenerateReport = new javax.swing.JPanel();
+        btnGenerateEquipmentReport = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtReportOutput = new javax.swing.JTextArea();
         pnlCreateReportTemplate = new javax.swing.JPanel();
 
         pnlReports.setBackground(new java.awt.Color(204, 204, 204));
 
         pnlGenerateReport.setBackground(new java.awt.Color(204, 204, 204));
+        
+        btnGenerateEquipmentReport.setText("Generate Equipment Report");
+        btnGenerateEquipmentReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateEquipmentReportActionPerformed(evt);
+            }
+        });
+        
+        txtReportOutput.setColumns(20);
+        txtReportOutput.setRows(5);
+        txtReportOutput.setEditable(false);
+        jScrollPane1.setViewportView(txtReportOutput);
 
         javax.swing.GroupLayout pnlGenerateReportLayout = new javax.swing.GroupLayout(pnlGenerateReport);
         pnlGenerateReport.setLayout(pnlGenerateReportLayout);
         pnlGenerateReportLayout.setHorizontalGroup(
             pnlGenerateReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 529, Short.MAX_VALUE)
+            .addGroup(pnlGenerateReportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlGenerateReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addComponent(btnGenerateEquipmentReport))
+                .addContainerGap())
         );
         pnlGenerateReportLayout.setVerticalGroup(
             pnlGenerateReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 293, Short.MAX_VALUE)
+            .addGroup(pnlGenerateReportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGenerateEquipmentReport)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabPaneReportsOptions.addTab("Generate Report", pnlGenerateReport);
@@ -101,11 +126,31 @@ public class ReportsGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
 
+    private void btnGenerateEquipmentReportActionPerformed(java.awt.event.ActionEvent evt) {
+        java.util.List<String> transactions = EquipmentGUIService.getTransactionLog();
+        
+        if (transactions.isEmpty()) {
+            txtReportOutput.setText("No transactions recorded yet.");
+        } else {
+            StringBuilder report = new StringBuilder();
+            report.append("=== EQUIPMENT TRANSACTION REPORT ===\n\n");
+            report.append("Total Transactions: ").append(transactions.size()).append("\n\n");
+            
+            for (int i = 0; i < transactions.size(); i++) {
+                report.append((i + 1)).append(". ").append(transactions.get(i)).append("\n");
+            }
+            
+            txtReportOutput.setText(report.toString());
+        }
+    }
 
     // Variables declaration - do not modify                     
+    private javax.swing.JButton btnGenerateEquipmentReport;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlCreateReportTemplate;
     private javax.swing.JPanel pnlGenerateReport;
     private javax.swing.JPanel pnlReports;
     private javax.swing.JTabbedPane tabPaneReportsOptions;
+    private javax.swing.JTextArea txtReportOutput;
     // End of variables declaration                   
 }
