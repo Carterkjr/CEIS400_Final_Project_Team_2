@@ -1,20 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.devry.ecsproject;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import com.devry.ecsproject.BusinessLayer.DBConnect;
+import com.devry.ecsproject.PresentationLayer.MainGUI;
 
 /**
+ * ECSProject
  *
- * @author ASUS
+ * Official entry point for the Equipment Checkout System (ECS).
+ * Delegates startup to the Presentation Layer (MainGUI), which launches
+ * the Employee Login GUI.
+ *
+ * Added to address "how to login / how to run" clarity for Lab 6 testing.
  */
 public class ECSProject {
 
     public static void main(String[] args) {
-        System.out.println("ECS system TEAM 2!");
+        System.out.println("Starting ECS System - Team 2");
+
+        // Delegate to the Presentation Layer GUI entry point
+        MainGUI.main(args);
     }
 }
