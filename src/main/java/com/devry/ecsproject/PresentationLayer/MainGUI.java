@@ -4,9 +4,14 @@
  */
 package com.devry.ecsproject.PresentationLayer;
 
+import com.devry.ecsproject.BusinessLayer.DBConnect;
 import com.devry.ecsproject.BusinessLayer.EmployeeGUI;
 import com.devry.ecsproject.BusinessLayer.EquipmentGUI;
 import com.devry.ecsproject.BusinessLayer.ReportsGUI;
+import com.google.protobuf.Int64Value;
+
+import java.sql.SQLException;
+import java.util.Objects;
 
 /**
  *
@@ -240,32 +245,43 @@ public class MainGUI extends javax.swing.JFrame {
         // button on screen clicked
 
         // get input from boxes
-        String inputName = "Unknown";
-        int inputId = 0;
-        
-        // TODO
-        // validate inputs
-        // check name is not empty
+        String inputName = textEmail.getText();
+        int inputId = Integer.parseInt(textEmpId.getText());
+
+        // validate email is greater than 6 characters, contains an @ sign, period, and does not contain spaces or apostrophes
+        if ((inputName.length() < 6) || !inputName.contains("@") || !inputName.contains(".") || inputName.contains(" ") || inputName.contains("'")) {
+            lblLoginError.setText(userError());
+            lblLoginError.setVisible(true);
+        }
+
         // check id is not empty
-        
-        // verify user exists in database
-        verifyUser(inputName, inputId); // TODO
-        
-        // check user access level in order to show proper UI options
+        if (inputId == 0) {
+            if (inputName.length() < 6) {
+                lblLoginError.setText(userError());
+                lblLoginError.setVisible(true);
+            }
+        }
+
+        if ((inputName.length() > 6 && inputName.contains(".") && inputName.contains("@")) && inputId > 0) {
+            lblLoginError.setVisible(false);
+        }
+
+        // validate user exists in db
+        if (verifyUser(inputName, inputId)) {
+            // validate user is active employee
+            if (isActiveEmployee(inputName, inputId)) {
+                // fetch user access level & load appropriate ui frames for access level
+                getUserAccessLevel(inputName, inputId);
+                lblLoginError.setVisible(false);
+            } else {
+                lblLoginError.setText(userError());
+                lblLoginError.setVisible(true);
+            }
+        }
+
         // Equipment Manager gets "Equipment" Tab and so forth
         // .setVisible() on the panels?
-        
-        // load proper UI tabs into Main UI Frame
-        tabPaneUIOptions.addTab("Equipment", new EquipmentGUI());
-        
-        tabPaneUIOptions.addTab("Supervision", new EmployeeGUI());
 
-        tabPaneUIOptions.addTab("Reports", new ReportsGUI());
-
-        
-        
-        
-        
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
@@ -286,16 +302,63 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JTextField textEmail;
     private javax.swing.JTextField textEmpId;
     // End of variables declaration//GEN-END:variables
-
-    
     
     
     private boolean verifyUser(String inputName, int inputId) {
-        // TODO check user against active users in database
-        // return boolean for verification
-        return false;
-    } // end of verifyUser
+        try {
+            String query = "SELECT email FROM employees WHERE employeeID = " + inputId;
+            String retrievedEmail = DBConnect.getData("employees", query);
+            if (retrievedEmail == null) {
+                lblLoginError.setText(userError());
+                lblLoginError.setVisible(true);
+                return false;
+            } else if (retrievedEmail.equalsIgnoreCase(inputName)) {
+                lblLoginError.setVisible(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            lblLoginError.setText(userError());
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isActiveEmployee(String inputName, int inputId) {
+        try {
+            String query = "SELECT isActiveEmployee FROM employees WHERE employeeID = " + inputId;
+            String employeeActive = DBConnect.getData("employees", query);
+            if (employeeActive.equalsIgnoreCase("false")) {
+                lblLoginError.setText("Employee not active. Please try again.");
+                lblLoginError.setVisible(true);
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
     
-    
-    
+    private void getUserAccessLevel(String inputName, int inputId) {
+        String query = "SELECT accessLevel FROM employees WHERE employeeID = " + inputId;
+        int accessLevel = Integer.parseInt(Objects.requireNonNull(DBConnect.getData("employees", query)));
+        // load basic equipment ui
+        if (accessLevel != 0) {
+            tabPaneUIOptions.addTab("Equipment", new EquipmentGUI());
+        }
+
+        // load reporting ui
+        if (accessLevel == 1) {
+            tabPaneUIOptions.addTab("Reports", new ReportsGUI());
+        }
+
+        // load admin ui
+        if (accessLevel > 1) {
+            tabPaneUIOptions.addTab("Supervision", new EmployeeGUI());
+        }
+
+    }
+
+    public String userError() {
+        return "User credentials error. Please try again.";
+    }
 } // end of MainGUI
