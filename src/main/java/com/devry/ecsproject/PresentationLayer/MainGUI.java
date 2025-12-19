@@ -306,7 +306,7 @@ public class MainGUI extends javax.swing.JFrame {
     
     private boolean verifyUser(String inputName, int inputId) {
         try {
-            String query = "SELECT email FROM employees WHERE employeeID = " + inputId;
+            String query = "SELECT email FROM employees WHERE employeeID = " + inputId + ";";
             String retrievedEmail = DBConnect.getData("employees", query);
             if (retrievedEmail == null) {
                 lblLoginError.setText(userError());
@@ -325,7 +325,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private boolean isActiveEmployee(String inputName, int inputId) {
         try {
-            String query = "SELECT isActiveEmployee FROM employees WHERE employeeID = " + inputId;
+            String query = "SELECT isActiveEmployee FROM employees WHERE employeeID = " + inputId + ";";
             String employeeActive = DBConnect.getData("employees", query);
             if (employeeActive.equalsIgnoreCase("false")) {
                 lblLoginError.setText("Employee not active. Please try again.");
@@ -339,7 +339,7 @@ public class MainGUI extends javax.swing.JFrame {
     }
     
     private void getUserAccessLevel(String inputName, int inputId) {
-        String query = "SELECT accessLevel FROM employees WHERE employeeID = " + inputId;
+        String query = "SELECT accessLevel FROM employees WHERE employeeID = " + inputId + ";";
         int accessLevel = Integer.parseInt(Objects.requireNonNull(DBConnect.getData("employees", query)));
         // load basic equipment ui
         if (accessLevel != 0) {

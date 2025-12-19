@@ -55,7 +55,7 @@ public class DBConnect {
         } catch(Exception e) {
             e.printStackTrace();
             System.out.println("Could not load data");
-            return null;
+            return "Could not load data";
         }
     }
 

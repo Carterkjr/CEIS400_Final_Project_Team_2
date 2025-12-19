@@ -68,6 +68,8 @@ public class EmployeeGUIService {
       public int employeeFired(Employee emp ){
         System.out.println("Employee terminated: " + emp.getFirstName() + " " + emp.getLastName());
         System.out.println("Employee ID: " + emp.getEmployeeID());
+        String queryString = "UPDATE employees SET isActive = 0 WHERE employeeID = " + emp.getEmployeeID() + ";";
+        DBConnect.saveData("employees", queryString);
         int resultID = (int)(Math.random() * 10000) + 1;
         return resultID;
     }
