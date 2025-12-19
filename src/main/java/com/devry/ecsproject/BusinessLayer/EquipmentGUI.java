@@ -47,6 +47,7 @@ public class EquipmentGUI extends javax.swing.JPanel {
         rdoBtnCheckout = new javax.swing.JRadioButton();
         lblTransactionType = new javax.swing.JLabel();
         checkDamaged = new javax.swing.JCheckBox();
+        lblPassFailMessage = new javax.swing.JLabel();
         btnSubmitEquipmentTransaction = new javax.swing.JButton();
 
         pnlEquipment.setBackground(new java.awt.Color(204, 204, 204));
@@ -146,6 +147,11 @@ public class EquipmentGUI extends javax.swing.JPanel {
         checkDamaged.setText("Damaged ?");
         checkDamaged.setToolTipText("");
         checkDamaged.addActionListener(this::checkDamagedActionPerformed);
+
+        lblPassFailMessage.setText("Transaction success!");
+        lblPassFailMessage.setVisible(false);
+        lblPassFailMessage.setFont(new java.awt.Font("Candara", 0, 12));
+        lblPassFailMessage.setPreferredSize(new java.awt.Dimension(160, 25));
 
         btnSubmitEquipmentTransaction.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         btnSubmitEquipmentTransaction.setText("Submit");
@@ -272,6 +278,8 @@ public class EquipmentGUI extends javax.swing.JPanel {
             EquipmentGUIService.addTransaction(equipmentID, employeeID, transactionType, transactionDate);
             
             System.out.println("Transaction completed successfully!");
+            lblPassFailMessage.setText("Transaction successfully captured!");
+            lblPassFailMessage.setVisible(true);
             System.out.println("NOTE: Make sure Equipment ID " + equipmentID + " and Employee ID " + employeeID + " exist in the database.");
             
             textEquipmentID.setText("");
@@ -295,6 +303,7 @@ public class EquipmentGUI extends javax.swing.JPanel {
     private javax.swing.JLabel lblEquipmentID;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTransactionType;
+    private javax.swing.JLabel lblPassFailMessage;
     private javax.swing.JPanel pnlEquipment;
     private javax.swing.JPanel pnlRecords;
     private javax.swing.JPanel pnlTransaction;
