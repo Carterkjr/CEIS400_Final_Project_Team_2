@@ -18,17 +18,79 @@ public class DBConnect {
         } 
     }
 
-    public static void getData(String table, String userQuery) {
+    public static String getData(int searchColumn, String table, String userQuery) {
         try {
             Connection conn = DriverManager.getConnection(url);
             PreparedStatement query = conn.prepareStatement(userQuery);
             ResultSet rs = query.executeQuery();
+            StringBuilder result = new StringBuilder();
+            int resultingRows = 0;
             while(rs.next()) {
-                System.out.println(rs.getString(1)); // Example to print first column
+                if (resultingRows == 0) {
+                    result.append(rs.getString(searchColumn));
+                    resultingRows ++;
+                } else {
+                    result.append("\n").append(rs.getString(searchColumn)); // Example to print first column
+                    resultingRows ++;
+                }
             }
+            return result.toString();
         } catch(Exception e) {
             e.printStackTrace();
             System.out.println("Could not load data from " + table);
+            return null;
+        }
+    }
+
+    public static String getData(String userQuery) {
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            PreparedStatement query = conn.prepareStatement(userQuery);
+            ResultSet rs = query.executeQuery();
+            StringBuilder searchResults = new StringBuilder();
+            while (rs.next()) {
+                searchResults.append("\n").append(rs.getString(1));
+            }
+            return searchResults.toString();
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Could not load data");
+            return null;
+        }
+    }
+
+    public static String getData(String table, String userQuery) {
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            PreparedStatement query = conn.prepareStatement(userQuery);
+            ResultSet rs = query.executeQuery();
+            StringBuilder searchResults = new StringBuilder();
+            while (rs.next()) {
+                searchResults.append("\n").append(rs.getString(1));
+            }
+            return searchResults.toString();
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Could not load data from " + table);
+            return null;
+        }
+    }
+
+    public static String getData(String searchColumn, String table, String userQuery) {
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            PreparedStatement query = conn.prepareStatement(userQuery);
+            ResultSet rs = query.executeQuery();
+            StringBuilder searchResults = new StringBuilder();
+            while (rs.next()) {
+                searchResults.append("\n").append(rs.getString(searchColumn));
+            }
+            return searchResults.toString();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Could not load data from " + table);
+            return null;
         }
     }
 
@@ -37,7 +99,7 @@ public class DBConnect {
             Connection conn = DriverManager.getConnection(url);
             PreparedStatement update = conn.prepareStatement(userUpdate);
             update.executeUpdate();
-            
+            System.out.println("Successfully updated.");
         } catch(Exception e) {
             e.printStackTrace();
             System.out.println("Could not save data to " + table);
