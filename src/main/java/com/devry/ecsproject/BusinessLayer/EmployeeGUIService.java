@@ -38,12 +38,14 @@ public class EmployeeGUIService {
 
 
     public Employee getEmployeeByID(int employeeID) {
-        // Return employee with the provided ID
-        Date temp = new Date();
-        List equipmentHistory = new ArrayList();
-        Employee emp = new Employee(employeeID,"John","Doe",temp,true,
-                "Worker",1,"Maintenance",equipmentHistory);
-        return emp;
+        // Get employee from database
+        Employee emp = Employee.getEmployeeByID(employeeID);
+        if (emp != null) {
+            return emp;
+        } else {
+            // Return null if employee not found
+            return null;
+        }
     }
  
 
@@ -58,17 +60,66 @@ public class EmployeeGUIService {
 
       
       public int employeeHired(Employee emp ){
-        System.out.println("Employee hired: " + emp.getFirstName() + " " + emp.getLastName());
-        System.out.println("Role: " + emp.getRole() + ", Department: " + emp.getDepartment());
-        int resultID = (int)(Math.random() * 10000) + 1;
-        return resultID;
+        try {
+            // Actually save the employee to the database
+            emp.addEmployee();
+            
+            System.out.println("Employee hired: " + emp.getFirstName() + " " + emp.getLastName());
+            System.out.println("Role: " + emp.getRole() + ", Department: " + emp.getDepartment());
+            System.out.println("Employee ID: " + emp.getEmployeeID() + " saved to database");
+            
+            // Return the actual employee ID that was saved
+            return emp.getEmployeeID();
+        } catch (Exception e) {
+            System.err.println("Error hiring employee: " + e.getMessage());
+            return -1; // Return -1 to indicate error
+        }
     }
 
       
       public int employeeFired(Employee emp ){
-        System.out.println("Employee terminated: " + emp.getFirstName() + " " + emp.getLastName());
-        System.out.println("Employee ID: " + emp.getEmployeeID());
-        int resultID = (int)(Math.random() * 10000) + 1;
-        return resultID;
+        try {
+            // Actually update the employee in the database
+            emp.updateEmployee();
+            
+            System.out.println("Employee terminated: " + emp.getFirstName() + " " + emp.getLastName());
+            System.out.println("Employee ID: " + emp.getEmployeeID() + " set to inactive in database");
+            
+            // Return the employee ID to indicate success
+            return emp.getEmployeeID();
+        } catch (Exception e) {
+            System.err.println("Error terminating employee: " + e.getMessage());
+            return -1; // Return -1 to indicate error
+        }
+    }
+    
+    /**
+     * Get all active employees from the database
+     * @return List of all active employees
+     */
+    public List<Employee> getAllEmployees() {
+        return Employee.getAllEmployees();
+    }
+    
+    /**
+     * Get the total count of active employees
+     * @return Total number of active employees
+     */
+    public int getEmployeeCount() {
+        List<Employee> employees = getAllEmployees();
+        return employees != null ? employees.size() : 0;
+    }
+    
+    /**
+     * Generate a unique employee ID
+     * @return A unique employee ID
+     */
+    public int generateEmployeeID() {
+        // Generate a random ID between 1000 and 9999
+        int newID;
+        do {
+            newID = (int)(Math.random() * 9000) + 1000;
+        } while (getEmployeeByID(newID) != null); // Make sure ID is unique
+        return newID;
     }
 } // end of EmployeeGUIService

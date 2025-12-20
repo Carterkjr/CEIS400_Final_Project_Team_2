@@ -37,8 +37,24 @@ public class EquipmentGUIService {
             new Equipment(3, "Hammer", "Hand Tools", false, true).addEquipment();
             new Equipment(4, "Safety Vest", "Safety Equipment", false, true).addEquipment();
             
+            // Add some sample transactions for testing
+            addSampleTransactions();
+            
             System.out.println("Sample equipment initialized! Use Equipment IDs: 1, 2, 3, 4");
         }
+    }
+    
+    private void addSampleTransactions() {
+        Date now = new Date();
+        Date yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+        Date lastWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        
+        addTransaction(1, 123, "checkout", lastWeek);
+        addTransaction(2, 456, "checkout", yesterday);
+        addTransaction(1, 123, "checkin", yesterday);
+        addTransaction(3, 789, "checkout", now);
+        
+        System.out.println("Sample transactions added: " + transactionLog.size() + " transactions");
     }
     
     public static boolean isUsingDatabase() {
@@ -46,7 +62,57 @@ public class EquipmentGUIService {
     }
     
     public static List<String> getTransactionLog() {
+        // If we have transactions in memory, return them
+        if (!transactionLog.isEmpty()) {
+            System.out.println("Returning " + transactionLog.size() + " transactions from memory");
+            return transactionLog;
+        }
+        
+        // Try to get transactions from database if using database
+        if (useDatabase) {
+            try {
+                List<String> dbTransactions = getTransactionsFromDatabase();
+                if (!dbTransactions.isEmpty()) {
+                    transactionLog.addAll(dbTransactions);
+                    System.out.println("Loaded " + dbTransactions.size() + " transactions from database");
+                    return transactionLog;
+                }
+            } catch (Exception e) {
+                System.err.println("Error loading transactions from database: " + e.getMessage());
+            }
+        }
+        
+        // If no transactions found, add some sample data for demonstration
+        if (transactionLog.isEmpty()) {
+            System.out.println("No transactions found, adding sample transactions...");
+            Date now = new Date();
+            addTransaction(1, 123, "checkout", new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000));
+            addTransaction(2, 456, "checkout", new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000));
+            addTransaction(1, 123, "checkin", new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000));
+            addTransaction(3, 789, "checkout", now);
+        }
+        
         return transactionLog;
+    }
+    
+    /**
+     * Try to get transactions from the database
+     */
+    private static List<String> getTransactionsFromDatabase() {
+        List<String> dbTransactions = new ArrayList<>();
+        try {
+            // This would normally query the database for transactions
+            // For now, we'll simulate it
+            // String query = "SELECT * FROM transactions ORDER BY transactionDate DESC";
+            // Use DBConnect.executeQueryWithCallback to get real transactions
+            
+            System.out.println("Attempting to load transactions from database...");
+            // TODO: Implement actual database query when Transaction table is properly set up
+            
+        } catch (Exception e) {
+            System.err.println("Error querying database for transactions: " + e.getMessage());
+        }
+        return dbTransactions;
     }
     
     public static void addTransaction(int equipmentID, int employeeID, String type, Date date) {

@@ -5,6 +5,7 @@
 package com.devry.ecsproject.BusinessLayer;
 
 import com.devry.ecsproject.DataLayer.Employee;
+import java.util.List;
 
 /**
  *
@@ -13,6 +14,9 @@ import com.devry.ecsproject.DataLayer.Employee;
 public class EmployeeGUI extends javax.swing.JPanel {
     
     private EmployeeGUIService employeeService;
+    private List<Employee> allEmployees;
+    private int currentEmployeeIndex;
+    private boolean isListMode;
 
     /**
      * Creates new form EmployeePanel
@@ -20,6 +24,15 @@ public class EmployeeGUI extends javax.swing.JPanel {
     public EmployeeGUI() {
         initComponents();
         employeeService = new EmployeeGUIService();
+        allEmployees = employeeService.getAllEmployees();
+        currentEmployeeIndex = 0;
+        isListMode = false;
+        
+        // Add navigation functionality to the input field for enhanced UX
+        updateEmployeeNavigationInfo();
+        
+        // Automatically load and display all employees in the new List Employee tab
+        loadEmployeeListTab();
     }
 
     /**
@@ -88,6 +101,10 @@ public class EmployeeGUI extends javax.swing.JPanel {
         textTerminateEmployeeDepartment = new javax.swing.JTextField();
         textTerminateEmployeeAccess = new javax.swing.JTextField();
         btnTerminateEmplyoeeSubmit = new javax.swing.JButton();
+        panelListEmployee = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtEmployeeList = new javax.swing.JTextArea();
+        btnRefreshEmployeeList = new javax.swing.JButton();
 
         pnlEmployees.setBackground(new java.awt.Color(204, 204, 204));
         pnlEmployees.setMaximumSize(new java.awt.Dimension(100, 32767));
@@ -117,7 +134,7 @@ public class EmployeeGUI extends javax.swing.JPanel {
         lblViewEmployeeError.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         lblViewEmployeeError.setForeground(new java.awt.Color(51, 51, 51));
         lblViewEmployeeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblViewEmployeeError.setText("Error");
+        lblViewEmployeeError.setText("---");
         lblViewEmployeeError.setMaximumSize(new java.awt.Dimension(160, 25));
         lblViewEmployeeError.setMinimumSize(new java.awt.Dimension(160, 25));
         lblViewEmployeeError.setPreferredSize(new java.awt.Dimension(160, 25));
@@ -183,37 +200,37 @@ public class EmployeeGUI extends javax.swing.JPanel {
         textViewEmployeeName.setEditable(false);
         textViewEmployeeName.setBackground(new java.awt.Color(225, 225, 225));
         textViewEmployeeName.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textViewEmployeeName.setText("John Doe");
+        textViewEmployeeName.setText("---");
         textViewEmployeeName.setFocusable(false);
 
         textViewEmployeeEmail.setEditable(false);
         textViewEmployeeEmail.setBackground(new java.awt.Color(225, 225, 225));
         textViewEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textViewEmployeeEmail.setText("jdoe555@email.com");
+        textViewEmployeeEmail.setText("---");
         textViewEmployeeEmail.setFocusable(false);
 
         textViewEmployeeDate.setEditable(false);
         textViewEmployeeDate.setBackground(new java.awt.Color(225, 225, 225));
         textViewEmployeeDate.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textViewEmployeeDate.setText("12-31-1999");
+        textViewEmployeeDate.setText("---");
         textViewEmployeeDate.setFocusable(false);
 
         textViewEmployeeRole.setEditable(false);
         textViewEmployeeRole.setBackground(new java.awt.Color(225, 225, 225));
         textViewEmployeeRole.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textViewEmployeeRole.setText("Worker");
+        textViewEmployeeRole.setText("---");
         textViewEmployeeRole.setFocusable(false);
 
         textViewEmployeeDepartment.setEditable(false);
         textViewEmployeeDepartment.setBackground(new java.awt.Color(225, 225, 225));
         textViewEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textViewEmployeeDepartment.setText("Maintenance");
+        textViewEmployeeDepartment.setText("---");
         textViewEmployeeDepartment.setFocusable(false);
 
         textViewEmployeeAccess.setEditable(false);
         textViewEmployeeAccess.setBackground(new java.awt.Color(225, 225, 225));
         textViewEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textViewEmployeeAccess.setText("1");
+        textViewEmployeeAccess.setText("---");
         textViewEmployeeAccess.setFocusable(false);
 
         javax.swing.GroupLayout pnlViewEmployeeResultsLayout = new javax.swing.GroupLayout(pnlViewEmployeeResults);
@@ -395,7 +412,7 @@ public class EmployeeGUI extends javax.swing.JPanel {
         txtHireEmployeeResult.setForeground(new java.awt.Color(51, 51, 51));
         txtHireEmployeeResult.setLineWrap(true);
         txtHireEmployeeResult.setRows(5);
-        txtHireEmployeeResult.setText("Employee Added to DB\n\nID: 00001\nName: John Doe\nEmail: jdoe@email.com\nHire Date: 12-31-1999\nRole: Worker\nDepartment: Maintenance\nAccess Level: 1");
+        txtHireEmployeeResult.setText("Employee results will appear here...");
         txtHireEmployeeResult.setBorder(null);
         txtHireEmployeeResult.setFocusable(false);
         jScrollPane1.setViewportView(txtHireEmployeeResult);
@@ -445,7 +462,7 @@ public class EmployeeGUI extends javax.swing.JPanel {
         lblTerminateEmployeeError.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         lblTerminateEmployeeError.setForeground(new java.awt.Color(51, 51, 51));
         lblTerminateEmployeeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTerminateEmployeeError.setText("Error");
+        lblTerminateEmployeeError.setText("---");
         lblTerminateEmployeeError.setMaximumSize(new java.awt.Dimension(160, 25));
         lblTerminateEmployeeError.setMinimumSize(new java.awt.Dimension(160, 25));
         lblTerminateEmployeeError.setPreferredSize(new java.awt.Dimension(160, 25));
@@ -511,37 +528,37 @@ public class EmployeeGUI extends javax.swing.JPanel {
         textTerminateEmployeeName.setEditable(false);
         textTerminateEmployeeName.setBackground(new java.awt.Color(225, 225, 225));
         textTerminateEmployeeName.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textTerminateEmployeeName.setText("John Doe");
+        textTerminateEmployeeName.setText("---");
         textTerminateEmployeeName.setFocusable(false);
 
         textTerminateEmployeeEmail.setEditable(false);
         textTerminateEmployeeEmail.setBackground(new java.awt.Color(225, 225, 225));
         textTerminateEmployeeEmail.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textTerminateEmployeeEmail.setText("jdoe555@email.com");
+        textTerminateEmployeeEmail.setText("---");
         textTerminateEmployeeEmail.setFocusable(false);
 
         textTerminateEmployeeDate.setEditable(false);
         textTerminateEmployeeDate.setBackground(new java.awt.Color(225, 225, 225));
         textTerminateEmployeeDate.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textTerminateEmployeeDate.setText("12-31-1999");
+        textTerminateEmployeeDate.setText("---");
         textTerminateEmployeeDate.setFocusable(false);
 
         textTerminateEmployeeRole.setEditable(false);
         textTerminateEmployeeRole.setBackground(new java.awt.Color(225, 225, 225));
         textTerminateEmployeeRole.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textTerminateEmployeeRole.setText("Worker");
+        textTerminateEmployeeRole.setText("---");
         textTerminateEmployeeRole.setFocusable(false);
 
         textTerminateEmployeeDepartment.setEditable(false);
         textTerminateEmployeeDepartment.setBackground(new java.awt.Color(225, 225, 225));
         textTerminateEmployeeDepartment.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textTerminateEmployeeDepartment.setText("Maintenance");
+        textTerminateEmployeeDepartment.setText("---");
         textTerminateEmployeeDepartment.setFocusable(false);
 
         textTerminateEmployeeAccess.setEditable(false);
         textTerminateEmployeeAccess.setBackground(new java.awt.Color(225, 225, 225));
         textTerminateEmployeeAccess.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        textTerminateEmployeeAccess.setText("1");
+        textTerminateEmployeeAccess.setText("---");
         textTerminateEmployeeAccess.setFocusable(false);
 
         btnTerminateEmplyoeeSubmit.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
@@ -631,6 +648,52 @@ public class EmployeeGUI extends javax.swing.JPanel {
 
         tabPaneEmployeeSupervision.addTab("Terminate Employee", panelTerminateEmployee);
 
+        panelListEmployee.setBackground(new java.awt.Color(204, 204, 204));
+
+        jScrollPane2.setBackground(new java.awt.Color(204, 204, 204));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        txtEmployeeList.setEditable(false);
+        txtEmployeeList.setBackground(new java.awt.Color(240, 240, 240));
+        txtEmployeeList.setColumns(20);
+        txtEmployeeList.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
+        txtEmployeeList.setForeground(new java.awt.Color(51, 51, 51));
+        txtEmployeeList.setLineWrap(true);
+        txtEmployeeList.setRows(5);
+        txtEmployeeList.setText("Loading employee list...");
+        txtEmployeeList.setBorder(null);
+        txtEmployeeList.setFocusable(false);
+        jScrollPane2.setViewportView(txtEmployeeList);
+
+        btnRefreshEmployeeList.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        btnRefreshEmployeeList.setText("Refresh List");
+        btnRefreshEmployeeList.addActionListener(this::btnRefreshEmployeeListActionPerformed);
+
+        javax.swing.GroupLayout panelListEmployeeLayout = new javax.swing.GroupLayout(panelListEmployee);
+        panelListEmployee.setLayout(panelListEmployeeLayout);
+        panelListEmployeeLayout.setHorizontalGroup(
+            panelListEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelListEmployeeLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(panelListEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addGroup(panelListEmployeeLayout.createSequentialGroup()
+                        .addComponent(btnRefreshEmployeeList, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(15, 15, 15))
+        );
+        panelListEmployeeLayout.setVerticalGroup(
+            panelListEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelListEmployeeLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(btnRefreshEmployeeList)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
+        );
+
+        tabPaneEmployeeSupervision.addTab("List Employee", panelListEmployee);
+
         javax.swing.GroupLayout pnlEmployeeOptionsLayout = new javax.swing.GroupLayout(pnlEmployeeOptions);
         pnlEmployeeOptions.setLayout(pnlEmployeeOptionsLayout);
         pnlEmployeeOptionsLayout.setHorizontalGroup(
@@ -684,37 +747,306 @@ public class EmployeeGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
 
-    private void btnViewEmplyoeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
-        try {
-            int employeeID = Integer.parseInt(inputIDViewEmployee.getText());
-            Employee emp = employeeService.getEmployeeByID(employeeID);
-            
+    /**
+     * Update the UI to show navigation information for employee browsing
+     */
+    private void updateEmployeeNavigationInfo() {
+        if (allEmployees != null && !allEmployees.isEmpty()) {
+            lblViewEmployeeID.setText("Employee ID (Total: " + allEmployees.size() + " employees):");
+            // Show available employee IDs as a hint
+            StringBuilder ids = new StringBuilder();
+            for (Employee emp : allEmployees) {
+                if (ids.length() > 0) ids.append(", ");
+                ids.append(emp.getEmployeeID());
+            }
+            inputIDViewEmployee.setToolTipText("Available Employee IDs: " + ids.toString() + " | Commands: 'LIST' (browse), 'LISTALL' (show all)");
+        } else {
+            lblViewEmployeeID.setText("Employee's ID:");
+            inputIDViewEmployee.setToolTipText("Enter Employee ID | Commands: 'LIST' (browse), 'LISTALL' (show all employees)");
+        }
+    }
+    
+    /**
+     * Show the current employee in list browsing mode
+     */
+    private void showCurrentEmployee() {
+        if (allEmployees != null && !allEmployees.isEmpty() && currentEmployeeIndex >= 0 && currentEmployeeIndex < allEmployees.size()) {
+            Employee emp = allEmployees.get(currentEmployeeIndex);
             textViewEmployeeName.setText(emp.getFirstName() + " " + emp.getLastName());
             textViewEmployeeEmail.setText(emp.getFirstName().toLowerCase() + "." + emp.getLastName().toLowerCase() + "@company.com");
             textViewEmployeeDate.setText(emp.getHireDate().toString());
             textViewEmployeeRole.setText(emp.getRole());
             textViewEmployeeDepartment.setText(emp.getDepartment());
             textViewEmployeeAccess.setText(String.valueOf(emp.getAccessLevel()));
-        } catch (NumberFormatException e) {
-            lblViewEmployeeError.setText("Invalid Employee ID");
+            
+            inputIDViewEmployee.setText(String.valueOf(emp.getEmployeeID()));
+            lblViewEmployeeError.setText("Browsing " + (currentEmployeeIndex + 1) + " of " + allEmployees.size() + " employees | Press NEXT/PREV");
+        } else {
+            clearEmployeeFields();
+            lblViewEmployeeError.setText("No employees found");
         }
+    }
+    
+    /**
+     * Navigate to next employee in list mode
+     */
+    private void showNextEmployee() {
+        if (allEmployees != null && !allEmployees.isEmpty()) {
+            currentEmployeeIndex = (currentEmployeeIndex + 1) % allEmployees.size();
+            showCurrentEmployee();
+        }
+    }
+    
+    /**
+     * Navigate to previous employee in list mode
+     */
+    private void showPreviousEmployee() {
+        if (allEmployees != null && !allEmployees.isEmpty()) {
+            currentEmployeeIndex = currentEmployeeIndex > 0 ? currentEmployeeIndex - 1 : allEmployees.size() - 1;
+            showCurrentEmployee();
+        }
+    }
+    
+    /**
+     * Show all employees as text in a comprehensive list
+     */
+    private void showAllEmployeesAsText() {
+        try {
+            // Refresh the employee list from database
+            allEmployees = employeeService.getAllEmployees();
+            
+            if (allEmployees == null || allEmployees.isEmpty()) {
+                textViewEmployeeName.setText("No employees found in database");
+                textViewEmployeeEmail.setText("---");
+                textViewEmployeeDate.setText("---");
+                textViewEmployeeRole.setText("---");
+                textViewEmployeeDepartment.setText("---");
+                textViewEmployeeAccess.setText("---");
+                lblViewEmployeeError.setText("No employees in database");
+                inputIDViewEmployee.setText("LISTALL");
+                return;
+            }
+            
+            // Create a comprehensive text display of all employees
+            StringBuilder allEmployeesText = new StringBuilder();
+            allEmployeesText.append("=== ALL EMPLOYEES IN DATABASE ===\n");
+            allEmployeesText.append("Total Employees: ").append(allEmployees.size()).append("\n\n");
+            
+            int count = 1;
+            for (Employee emp : allEmployees) {
+                allEmployeesText.append("Employee #").append(count).append("\n");
+                allEmployeesText.append("ID: ").append(emp.getEmployeeID()).append("\n");
+                allEmployeesText.append("Name: ").append(emp.getFirstName()).append(" ").append(emp.getLastName()).append("\n");
+                allEmployeesText.append("Email: ").append(emp.getFirstName().toLowerCase()).append(".").append(emp.getLastName().toLowerCase()).append("@company.com\n");
+                allEmployeesText.append("Role: ").append(emp.getRole()).append("\n");
+                allEmployeesText.append("Department: ").append(emp.getDepartment()).append("\n");
+                allEmployeesText.append("Access Level: ").append(emp.getAccessLevel()).append("\n");
+                allEmployeesText.append("Hire Date: ").append(emp.getHireDate()).append("\n");
+                allEmployeesText.append("Active: ").append(emp.isActiveEmployee() ? "Yes" : "No").append("\n");
+                allEmployeesText.append("------------------------\n");
+                count++;
+            }
+            
+            allEmployeesText.append("\nType employee ID to search, or 'SEARCH' to return to normal mode");
+            
+            // Display the list in the name field (it's the largest field)
+            textViewEmployeeName.setText(allEmployeesText.toString());
+            textViewEmployeeEmail.setText("Employee List Mode");
+            textViewEmployeeDate.setText("See list in Name field");
+            textViewEmployeeRole.setText("Scroll to see all");
+            textViewEmployeeDepartment.setText("Total: " + allEmployees.size());
+            textViewEmployeeAccess.setText("---");
+            
+            lblViewEmployeeError.setText("Showing all " + allEmployees.size() + " employees | Type 'SEARCH' to return");
+            inputIDViewEmployee.setText("LISTALL");
+            
+            // Exit list mode
+            isListMode = false;
+            btnViewEmplyoeeSubmit.setText("Submit");
+            
+        } catch (Exception e) {
+            lblViewEmployeeError.setText("Error loading employee list: " + e.getMessage());
+            clearEmployeeFields();
+        }
+    }
+    
+    /**
+     * Load and display all employees in the dedicated Employee List tab
+     */
+    private void loadEmployeeListTab() {
+        try {
+            // Refresh the employee list from database
+            List<Employee> employees = employeeService.getAllEmployees();
+            
+            if (employees == null || employees.isEmpty()) {
+                txtEmployeeList.setText("=== EMPLOYEE DATABASE ===\n\nNo employees found in database.\n\nUse the 'Hire Employee' tab to add your first employee!");
+                return;
+            }
+            
+            // Create a comprehensive text display of all employees
+            StringBuilder employeeList = new StringBuilder();
+            employeeList.append("=== ALL EMPLOYEES IN DATABASE ===\n");
+            employeeList.append("Last Updated: ").append(new java.util.Date().toString()).append("\n");
+            employeeList.append("Total Employees: ").append(employees.size()).append("\n\n");
+            
+            int count = 1;
+            for (Employee emp : employees) {
+                employeeList.append("[").append(count).append("] Employee ID: ").append(emp.getEmployeeID()).append("\n");
+                employeeList.append("    Name: ").append(emp.getFirstName()).append(" ").append(emp.getLastName()).append("\n");
+                employeeList.append("    Email: ").append(emp.getFirstName().toLowerCase()).append(".").append(emp.getLastName().toLowerCase()).append("@company.com\n");
+                employeeList.append("    Role: ").append(emp.getRole()).append("\n");
+                employeeList.append("    Department: ").append(emp.getDepartment()).append("\n");
+                employeeList.append("    Access Level: ").append(emp.getAccessLevel()).append("\n");
+                employeeList.append("    Hire Date: ").append(emp.getHireDate().toString().substring(0, 10)).append("\n");
+                employeeList.append("    Status: ").append(emp.isActiveEmployee() ? "Active" : "Inactive").append("\n");
+                employeeList.append("\n");
+                count++;
+            }
+            
+            employeeList.append("=== END OF EMPLOYEE LIST ===\n");
+            employeeList.append("\nTo search for a specific employee, use the 'View Employee' tab.");
+            employeeList.append("\nTo hire new employees, use the 'Hire Employee' tab.");
+            employeeList.append("\nTo terminate employees, use the 'Terminate Employee' tab.");
+            
+            txtEmployeeList.setText(employeeList.toString());
+            txtEmployeeList.setCaretPosition(0); // Scroll to top
+            
+        } catch (Exception e) {
+            txtEmployeeList.setText("=== EMPLOYEE DATABASE ===\n\nError loading employees: " + e.getMessage() + 
+                                "\n\nPlease check your database connection and try refreshing the list.");
+        }
+    }
+
+    private void btnViewEmplyoeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+        try {
+            String idText = inputIDViewEmployee.getText().trim().toUpperCase();
+            
+            // Handle special commands
+            if (idText.equals("LIST")) {
+                // Start list browsing mode
+                isListMode = true;
+                currentEmployeeIndex = 0;
+                btnViewEmplyoeeSubmit.setText("Next");
+                showCurrentEmployee();
+                return;
+            } else if (idText.equals("LISTALL") || idText.equals("ALL")) {
+                // Show all employees as text
+                showAllEmployeesAsText();
+                return;
+            } else if (idText.equals("PREV") || (isListMode && btnViewEmplyoeeSubmit.getText().equals("Next") && evt.getModifiers() == 17)) {
+                // Show previous employee (Ctrl+Click or type PREV)
+                showPreviousEmployee();
+                return;
+            } else if (isListMode && btnViewEmplyoeeSubmit.getText().equals("Next")) {
+                // Show next employee in list mode
+                showNextEmployee();
+                return;
+            } else if (idText.equals("EXIT") || idText.equals("SEARCH")) {
+                // Exit list mode and return to search mode
+                isListMode = false;
+                btnViewEmplyoeeSubmit.setText("Submit");
+                clearEmployeeFields();
+                inputIDViewEmployee.setText("");
+                lblViewEmployeeError.setText("Search mode: Enter ID, 'LIST' to browse, 'LISTALL' for all employees");
+                return;
+            }
+            
+            // Normal ID search mode
+            if (idText.isEmpty()) {
+                lblViewEmployeeError.setText("Enter ID, 'LIST' to browse, or 'LISTALL' for all employees");
+                clearEmployeeFields();
+                return;
+            }
+            
+            isListMode = false;
+            btnViewEmplyoeeSubmit.setText("Submit");
+            
+            int employeeID = Integer.parseInt(idText);
+            Employee emp = employeeService.getEmployeeByID(employeeID);
+            
+            if (emp != null && emp.getEmployeeID() != 0) {
+                textViewEmployeeName.setText(emp.getFirstName() + " " + emp.getLastName());
+                textViewEmployeeEmail.setText(emp.getFirstName().toLowerCase() + "." + emp.getLastName().toLowerCase() + "@company.com");
+                textViewEmployeeDate.setText(emp.getHireDate().toString());
+                textViewEmployeeRole.setText(emp.getRole());
+                textViewEmployeeDepartment.setText(emp.getDepartment());
+                textViewEmployeeAccess.setText(String.valueOf(emp.getAccessLevel()));
+                lblViewEmployeeError.setText("Employee found | Type 'LISTALL' for all employees");
+            } else {
+                lblViewEmployeeError.setText("Employee not found | Type 'LISTALL' for all employees");
+                clearEmployeeFields();
+            }
+        } catch (NumberFormatException e) {
+            lblViewEmployeeError.setText("Invalid ID format | Type 'LISTALL' for all employees");
+            clearEmployeeFields();
+        } catch (Exception e) {
+            lblViewEmployeeError.setText("Error: " + e.getMessage());
+            clearEmployeeFields();
+        }
+    }
+    
+    private void clearEmployeeFields() {
+        textViewEmployeeName.setText("---");
+        textViewEmployeeEmail.setText("---");
+        textViewEmployeeDate.setText("---");
+        textViewEmployeeRole.setText("---");
+        textViewEmployeeDepartment.setText("---");
+        textViewEmployeeAccess.setText("---");
     }                                                     
 
     private void btnHireEmployeeSubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         try {
-            String name = textHireEmployeeName.getText();
+            String name = textHireEmployeeName.getText().trim();
+            String role = textHireEmployeeRole.getText().trim();
+            String department = textHireEmployeeDepartment.getText().trim();
+            String accessLevelText = textHireEmployeeAccess.getText().trim();
+            
+            // Validate input fields
+            if (name.isEmpty() || role.isEmpty() || department.isEmpty() || accessLevelText.isEmpty()) {
+                txtHireEmployeeResult.setText("Error: All fields are required!");
+                return;
+            }
+            
             String[] nameParts = name.split(" ");
             String firstName = nameParts.length > 0 ? nameParts[0] : "";
             String lastName = nameParts.length > 1 ? nameParts[1] : "";
-            String role = textHireEmployeeRole.getText();
-            String department = textHireEmployeeDepartment.getText();
-            int accessLevel = Integer.parseInt(textHireEmployeeAccess.getText());
+            int accessLevel = Integer.parseInt(accessLevelText);
             
-            Employee emp = new Employee(0, firstName, lastName, new java.util.Date(), true, 
+            // Generate a unique employee ID
+            int employeeID = employeeService.generateEmployeeID();
+            
+            Employee emp = new Employee(employeeID, firstName, lastName, new java.util.Date(), true, 
                                        role, accessLevel, department, new java.util.ArrayList<>());
-            int reportID = employeeService.employeeHired(emp);
+            int resultID = employeeService.employeeHired(emp);
             
-            txtHireEmployeeResult.setText("Employee hired successfully!\nReport ID: " + reportID);
+            if (resultID > 0) {
+                txtHireEmployeeResult.setText("Employee hired successfully!\n" +
+                                            "Employee ID: " + employeeID + "\n" +
+                                            "Name: " + firstName + " " + lastName + "\n" +
+                                            "Role: " + role + "\n" +
+                                            "Department: " + department + "\n" +
+                                            "Access Level: " + accessLevel + "\n\n" +
+                                            "Check the 'List Employee' tab to see all employees.");
+                
+                // Clear the form
+                textHireEmployeeName.setText("");
+                textHireEmployeeRole.setText("");
+                textHireEmployeeDepartment.setText("");
+                textHireEmployeeAccess.setText("");
+                
+                // Refresh employee list for browsing
+                allEmployees = employeeService.getAllEmployees();
+                updateEmployeeNavigationInfo();
+                
+                // Refresh the employee list tab after a short delay
+                javax.swing.Timer timer = new javax.swing.Timer(1000, e -> loadEmployeeListTab());
+                timer.setRepeats(false);
+                timer.start();
+            } else {
+                txtHireEmployeeResult.setText("Error: Failed to save employee to database!");
+            }
+        } catch (NumberFormatException e) {
+            txtHireEmployeeResult.setText("Error: Access Level must be a number!");
         } catch (Exception e) {
             txtHireEmployeeResult.setText("Error: " + e.getMessage());
         }
@@ -725,6 +1057,18 @@ public class EmployeeGUI extends javax.swing.JPanel {
             int employeeID = Integer.parseInt(inputIDTerminateEmployee.getText());
             Employee emp = employeeService.getEmployeeByID(employeeID);
             
+            if (emp == null) {
+                lblTerminateEmployeeError.setText("Employee not found");
+                clearTerminateEmployeeFields();
+                return;
+            }
+            
+            if (!emp.isActiveEmployee()) {
+                lblTerminateEmployeeError.setText("Employee is already inactive");
+            } else {
+                lblTerminateEmployeeError.setText("---");
+            }
+            
             textTerminateEmployeeName.setText(emp.getFirstName() + " " + emp.getLastName());
             textTerminateEmployeeEmail.setText(emp.getFirstName().toLowerCase() + "." + emp.getLastName().toLowerCase() + "@company.com");
             textTerminateEmployeeDate.setText(emp.getHireDate().toString());
@@ -733,6 +1077,10 @@ public class EmployeeGUI extends javax.swing.JPanel {
             textTerminateEmployeeAccess.setText(String.valueOf(emp.getAccessLevel()));
         } catch (NumberFormatException e) {
             lblTerminateEmployeeError.setText("Invalid Employee ID");
+            clearTerminateEmployeeFields();
+        } catch (Exception e) {
+            lblTerminateEmployeeError.setText("Error: " + e.getMessage());
+            clearTerminateEmployeeFields();
         }
     }                                                        
 
@@ -740,24 +1088,68 @@ public class EmployeeGUI extends javax.swing.JPanel {
         try {
             int employeeID = Integer.parseInt(inputIDTerminateEmployee.getText());
             Employee emp = employeeService.getEmployeeByID(employeeID);
-            emp.setActiveEmployee(false);
-            int reportID = employeeService.employeeFired(emp);
             
-            lblTerminateEmployeeError.setText("Employee terminated. Report ID: " + reportID);
+            if (emp == null) {
+                lblTerminateEmployeeError.setText("Employee not found");
+                return;
+            }
+            
+            if (!emp.isActiveEmployee()) {
+                lblTerminateEmployeeError.setText("Employee is already inactive");
+                return;
+            }
+            
+            emp.setActiveEmployee(false);
+            int result = employeeService.employeeFired(emp);
+            
+            if (result > 0) {
+                lblTerminateEmployeeError.setText("Employee terminated successfully");
+                
+                // Clear the form
+                inputIDTerminateEmployee.setText("");
+                clearTerminateEmployeeFields();
+                
+                // Refresh the employee list in the List Employee tab
+                allEmployees = employeeService.getAllEmployees();
+                updateEmployeeNavigationInfo();
+                loadEmployeeListTab();
+            } else {
+                lblTerminateEmployeeError.setText("Error terminating employee");
+            }
         } catch (NumberFormatException e) {
             lblTerminateEmployeeError.setText("Invalid Employee ID");
+        } catch (Exception e) {
+            lblTerminateEmployeeError.setText("Error: " + e.getMessage());
         }
     }                                                          
+
+    private void btnRefreshEmployeeListActionPerformed(java.awt.event.ActionEvent evt) {                                                           
+        // Refresh the employee list from database
+        allEmployees = employeeService.getAllEmployees();
+        updateEmployeeNavigationInfo();
+        loadEmployeeListTab();
+    }                                                          
+
+    private void clearTerminateEmployeeFields() {
+        lblTerminateEmployeeName.setText("---");
+        lblTerminateEmployeeEmail.setText("---");
+        lblTerminateEmployeeRole.setText("---");
+        lblTerminateEmployeeDepartment.setText("---");
+        lblTerminateEmployeeAccess.setText("---");
+        lblTerminateEmployeeDate.setText("---");
+    }
 
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnHireEmployeeSubmit;
+    private javax.swing.JButton btnRefreshEmployeeList;
     private javax.swing.JButton btnTerminateEmplyoeeSubmit;
     private javax.swing.JButton btnTerminateEmplyoeeView;
     private javax.swing.JButton btnViewEmplyoeeSubmit;
     private javax.swing.JTextField inputIDTerminateEmployee;
     private javax.swing.JTextField inputIDViewEmployee;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblHireEmployeeAccess;
     private javax.swing.JLabel lblHireEmployeeDepartment;
     private javax.swing.JLabel lblHireEmployeeEmail;
@@ -780,6 +1172,7 @@ public class EmployeeGUI extends javax.swing.JPanel {
     private javax.swing.JLabel lblViewEmployeeName;
     private javax.swing.JLabel lblViewEmployeeRole;
     private javax.swing.JPanel panelHireEmployee;
+    private javax.swing.JPanel panelListEmployee;
     private javax.swing.JPanel panelTerminateEmployee;
     private javax.swing.JPanel panelViewEmployee;
     private javax.swing.JPanel pnlEmployeeOptions;
@@ -807,6 +1200,7 @@ public class EmployeeGUI extends javax.swing.JPanel {
     private javax.swing.JTextField textViewEmployeeEmail;
     private javax.swing.JTextField textViewEmployeeName;
     private javax.swing.JTextField textViewEmployeeRole;
+    private javax.swing.JTextArea txtEmployeeList;
     private javax.swing.JTextArea txtHireEmployeeResult;
     // End of variables declaration                   
 }

@@ -34,13 +34,18 @@ public class DBConnect {
 
     public static void saveData(String table, String userUpdate) {
         try {
+            System.out.println("Connecting to database...");
             Connection conn = DriverManager.getConnection(url);
+            System.out.println("Executing update: " + userUpdate);
             PreparedStatement update = conn.prepareStatement(userUpdate);
-            update.executeUpdate();
+            int rowsAffected = update.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
+            conn.close();
+            System.out.println("Data saved successfully to " + table);
             
         } catch(Exception e) {
             e.printStackTrace();
-            System.out.println("Could not save data to " + table);
+            System.out.println("Could not save data to " + table + ". Error: " + e.getMessage());
         }
     }
 
@@ -52,6 +57,50 @@ public class DBConnect {
         } catch(Exception e) {
             e.printStackTrace();
             System.out.println("Could not delete data from " + table);
+        }
+    }
+    
+    /**
+     * Execute a query and return the ResultSet for processing
+     * @param query The SQL query to execute
+     * @return ResultSet containing the query results
+     */
+    public static ResultSet executeQuery(String query) {
+        try {
+            System.out.println("Executing query: " + query);
+            Connection conn = DriverManager.getConnection(url);
+            // Note: In a production system, you'd want to manage connections properly
+            // For now, we'll keep the connection open for the ResultSet
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            return rs;
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Could not execute query: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
+     * Execute a query and process results with a callback
+     * This is a safer way to handle database queries
+     */
+    public static void executeQueryWithCallback(String query, java.util.function.Consumer<ResultSet> callback) {
+        try {
+            System.out.println("Executing query with callback: " + query);
+            Connection conn = DriverManager.getConnection(url);
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            
+            callback.accept(rs);
+            
+            rs.close();
+            statement.close();
+            conn.close();
+            System.out.println("Query executed successfully and connection closed");
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.out.println("Could not execute query: " + e.getMessage());
         }
     }
 

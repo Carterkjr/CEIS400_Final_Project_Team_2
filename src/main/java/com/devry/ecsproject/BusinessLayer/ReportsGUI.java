@@ -127,20 +127,49 @@ public class ReportsGUI extends javax.swing.JPanel {
     }// </editor-fold>                        
 
     private void btnGenerateEquipmentReportActionPerformed(java.awt.event.ActionEvent evt) {
-        java.util.List<String> transactions = EquipmentGUIService.getTransactionLog();
-        
-        if (transactions.isEmpty()) {
-            txtReportOutput.setText("No transactions recorded yet.");
-        } else {
-            StringBuilder report = new StringBuilder();
-            report.append("=== EQUIPMENT TRANSACTION REPORT ===\n\n");
-            report.append("Total Transactions: ").append(transactions.size()).append("\n\n");
+        try {
+            txtReportOutput.setText("Generating equipment transaction report...\nPlease wait...");
             
-            for (int i = 0; i < transactions.size(); i++) {
-                report.append((i + 1)).append(". ").append(transactions.get(i)).append("\n");
+            java.util.List<String> transactions = EquipmentGUIService.getTransactionLog();
+            
+            if (transactions.isEmpty()) {
+                txtReportOutput.setText("=== EQUIPMENT TRANSACTION REPORT ===\n\n" +
+                                      "No transactions recorded yet.\n\n" +
+                                      "INSTRUCTIONS:\n" +
+                                      "1. Go to the 'Equipment' tab\n" +
+                                      "2. Enter an Equipment ID (try: 1, 2, 3, or 4)\n" +
+                                      "3. Enter an Employee ID (try: 123, 456, or 789)\n" +
+                                      "4. Select 'Check Out' or 'Check In'\n" +
+                                      "5. Click Submit\n" +
+                                      "6. Return here and click 'Generate Equipment Report' again\n\n" +
+                                      "Note: Make sure the Equipment and Employee IDs exist in your database.");
+            } else {
+                StringBuilder report = new StringBuilder();
+                report.append("=== EQUIPMENT TRANSACTION REPORT ===\n");
+                report.append("Generated: ").append(new java.util.Date().toString()).append("\n");
+                report.append("Total Transactions: ").append(transactions.size()).append("\n\n");
+                
+                report.append("TRANSACTION HISTORY:\n");
+                report.append("=" .repeat(50)).append("\n\n");
+                
+                for (int i = 0; i < transactions.size(); i++) {
+                    report.append("[").append(i + 1).append("] ").append(transactions.get(i)).append("\n\n");
+                }
+                
+                report.append("=" .repeat(50)).append("\n");
+                report.append("End of Report\n\n");
+                report.append("TIP: Use the Equipment tab to create more transactions,\n");
+                report.append("then refresh this report to see updated data.");
+                
+                txtReportOutput.setText(report.toString());
+                txtReportOutput.setCaretPosition(0); // Scroll to top
             }
             
-            txtReportOutput.setText(report.toString());
+        } catch (Exception e) {
+            txtReportOutput.setText("=== EQUIPMENT TRANSACTION REPORT ===\n\n" +
+                                  "ERROR: Failed to generate report\n\n" +
+                                  "Error Details: " + e.getMessage() + "\n\n" +
+                                  "Please check your database connection and try again.");
         }
     }
 

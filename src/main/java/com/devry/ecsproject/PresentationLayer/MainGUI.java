@@ -7,6 +7,7 @@ package com.devry.ecsproject.PresentationLayer;
 import com.devry.ecsproject.BusinessLayer.EmployeeGUI;
 import com.devry.ecsproject.BusinessLayer.EquipmentGUI;
 import com.devry.ecsproject.BusinessLayer.ReportsGUI;
+import com.devry.ecsproject.DataLayer.User;
 
 /**
  *
@@ -23,6 +24,13 @@ public class MainGUI extends javax.swing.JFrame {
         // initializer for MainGUI 
         initComponents();
         
+        // Initialize default user if not exists
+        User.ensureDefaultUserExists();
+        
+        // Initially show only the login panel, hide the tabs
+        tabPaneUIOptions.removeAll(); // Remove any existing tabs
+        tabPaneUIOptions.addTab("Login", pnlLoginGUI);
+        tabPaneUIOptions.setEnabledAt(0, false); // Disable the login tab so user can't switch away
         
         // set window to center of screen
         this.setLocationRelativeTo(null);
@@ -94,7 +102,7 @@ public class MainGUI extends javax.swing.JFrame {
         lblLoginError.setFont(new java.awt.Font("Candara", 2, 14)); // NOI18N
         lblLoginError.setForeground(new java.awt.Color(51, 51, 51));
         lblLoginError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLoginError.setText("Login Error");
+        lblLoginError.setText("---");
         lblLoginError.setMaximumSize(new java.awt.Dimension(160, 25));
         lblLoginError.setMinimumSize(new java.awt.Dimension(160, 25));
         lblLoginError.setPreferredSize(new java.awt.Dimension(160, 25));
@@ -238,29 +246,57 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // button on screen clicked
+        
+        // Disable button to prevent multiple clicks
+        btnLogin.setEnabled(false);
+        btnLogin.setText("Logging in...");
 
         // get input from boxes
-        String inputName = "Unknown";
-        int inputId = 0;
+        String inputEmail = textEmail.getText().trim();
+        String inputPassword = textEmpId.getText().trim(); // Using textEmpId as password field
         
-        // TODO
+        // Clear any previous error messages
+        lblLoginError.setText("");
+        
         // validate inputs
-        // check name is not empty
-        // check id is not empty
+        if (inputEmail.isEmpty() || inputPassword.isEmpty()) {
+            lblLoginError.setText("Please enter both email and password.");
+            // Re-enable button and reset text
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Log In");
+            return;
+        }
         
         // verify user exists in database
-        verifyUser(inputName, inputId); // TODO
+        User authenticatedUser = User.authenticateUser(inputEmail, inputPassword);
         
-        // check user access level in order to show proper UI options
-        // Equipment Manager gets "Equipment" Tab and so forth
-        // .setVisible() on the panels?
-        
-        // load proper UI tabs into Main UI Frame
-        tabPaneUIOptions.addTab("Equipment", new EquipmentGUI());
-        
-        tabPaneUIOptions.addTab("Supervision", new EmployeeGUI());
-
-        tabPaneUIOptions.addTab("Reports", new ReportsGUI());
+        if (authenticatedUser != null) {
+            // Authentication successful
+            // Remove the login tab and add the main application tabs
+            tabPaneUIOptions.removeAll();
+            
+            // Add main application tabs based on user access level
+            tabPaneUIOptions.addTab("Equipment", new EquipmentGUI());
+            tabPaneUIOptions.addTab("Supervision", new EmployeeGUI());
+            tabPaneUIOptions.addTab("Reports", new ReportsGUI());
+            
+            // Select the first tab
+            tabPaneUIOptions.setSelectedIndex(0);
+            
+            // Reset button (though it won't be visible after login)
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Log In");
+            
+            logger.info("User logged in successfully: " + authenticatedUser.getEmail());
+        } else {
+            // Authentication failed
+            lblLoginError.setText("Invalid email or password. Please try again.");
+            // Clear the password field for security
+            textEmpId.setText("");
+            // Re-enable button and reset text
+            btnLogin.setEnabled(true);
+            btnLogin.setText("Log In");
+        }
 
         
         
@@ -290,10 +326,10 @@ public class MainGUI extends javax.swing.JFrame {
     
     
     
-    private boolean verifyUser(String inputName, int inputId) {
-        // TODO check user against active users in database
-        // return boolean for verification
-        return false;
+    private boolean verifyUser(String inputEmail, String inputPassword) {
+        // This method is now deprecated, authentication is handled in btnLoginActionPerformed
+        User user = User.authenticateUser(inputEmail, inputPassword);
+        return user != null;
     } // end of verifyUser
     
     
