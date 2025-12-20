@@ -18,6 +18,8 @@ Then, run the project ensuring the ECSProject.java is the main selected file.
 
 ---
 
+Equipment DB
+---
 | Equipment ID  | Equipment Name |
 | ------------- | ------------- |
 |1| Cordless Drill
@@ -25,3 +27,11 @@ Then, run the project ensuring the ECSProject.java is the main selected file.
 |3|	Hammer
 |4| Safety Vest
 |5|	Wrench Set
+
+
+
+Employee DB
+---
+| Employee ID  | Employee Name |
+| ------------- | ------------- |
+|8323| Testing
