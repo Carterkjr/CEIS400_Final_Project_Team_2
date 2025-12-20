@@ -7,10 +7,12 @@ package com.devry.ecsproject.BusinessLayer;
 import com.devry.ecsproject.DataLayer.Equipment;
 import com.devry.ecsproject.DataLayer.Transaction;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jordan
+ * Updated by: Carter Kemp, Jr - 12/18/25
  */
 public class EquipmentGUI extends javax.swing.JPanel {
     
@@ -24,6 +26,28 @@ public class EquipmentGUI extends javax.swing.JPanel {
     public EquipmentGUI() {
         initComponents();
         equipmentService = new EquipmentGUIService();
+        
+        // Add tooltips to show available equipment
+        updateEquipmentInfo();
+    }
+    
+    /**
+     * Update the UI to show available equipment information
+     */
+    private void updateEquipmentInfo() {
+        String equipmentInfo = EquipmentGUIService.getAvailableEquipmentInfo();
+        textEquipmentID.setToolTipText(equipmentInfo);
+        lblEquipmentID.setToolTipText(equipmentInfo);
+        
+        // Also show in console for reference
+        System.out.println("=== AVAILABLE EQUIPMENT ===");
+        for (com.devry.ecsproject.DataLayer.Equipment eq : EquipmentGUIService.getAllEquipment()) {
+            System.out.println("ID: " + eq.getEquipmentID() + " | " + eq.getName() + 
+                             " | Type: " + eq.getType() + 
+                             " | Available: " + eq.isAvailable() + 
+                             " | Damaged: " + eq.isDamage());
+        }
+        System.out.println("=============================");
     }
 
     /**
@@ -226,6 +250,31 @@ public class EquipmentGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
 
+    /**
+     * TR-002: Flexible ID parsing for Equipment Code / Employee ID.
+     * Accepts numeric-only IDs (e.g., 1234) and prefixed formats like EMP-1023 / EQ-5501.
+     * Throws IllegalArgumentException with a user-friendly message if invalid.
+     */
+    private int parseFlexibleId(String input, String fieldName) {
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException(fieldName + " cannot be empty.");
+        }
+
+        String numericPart = input.trim()
+                .toUpperCase()
+                .replace("EMP-", "")
+                .replace("EQ-", "")
+                .replaceAll("[^0-9]", "");
+
+        if (numericPart.isEmpty() || !numericPart.matches("\\d+")) {
+            throw new IllegalArgumentException(
+                    "Invalid " + fieldName + " format. Accepted: 1234, EMP-1234, EQ-5678"
+            );
+        }
+
+        return Integer.parseInt(numericPart);
+    }
+
     private void rdoBtnCheckinActionPerformed(java.awt.event.ActionEvent evt) {                                              
         transactionType = "checkin";
         rdoBtnCheckout.setSelected(false);
@@ -242,21 +291,38 @@ public class EquipmentGUI extends javax.swing.JPanel {
 
     private void btnSubmitEquipmentTransactionActionPerformed(java.awt.event.ActionEvent evt) {                                                              
         try {
-            int equipmentID = Integer.parseInt(textEquipmentID.getText());
-            int employeeID = Integer.parseInt(textEmployeeID.getText());
-            
-            if (transactionType.isEmpty()) {
-                System.out.println("ERROR: Please select Check In or Check Out");
+            int equipmentID;
+            int employeeID;
+
+            // TR-002: Validate and parse ID formats (supports numeric-only and EMP-/EQ- prefixed inputs)
+            try {
+                equipmentID = parseFlexibleId(textEquipmentID.getText(), "Equipment Code");
+                employeeID  = parseFlexibleId(textEmployeeID.getText(), "Employee ID");
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
+
+            if (transactionType.isEmpty()) {
+                String msg = "Please select Check In or Check Out.";
+                JOptionPane.showMessageDialog(this, msg, "Missing Transaction Type", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             Equipment equipment = equipmentService.getEquipmentByID(equipmentID);
-            
+
+            // TR-003: Provide clear GUI feedback for common failure conditions (not console-only)
+            if (equipment == null) {
+                String msg = "Checkout/Check-in failed: Equipment ID " + equipmentID + " was not found.";
+                JOptionPane.showMessageDialog(this, msg, "Transaction Failed", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             if (isDamaged) {
                 equipment.setDamage(true);
                 equipmentService.setDamageStatus(true);
             }
-            
+
             boolean isAvailable = transactionType.equals("checkin");
             equipment.setAvailable(isAvailable);
             equipmentService.setAvailability(isAvailable);
@@ -271,9 +337,16 @@ public class EquipmentGUI extends javax.swing.JPanel {
             
             EquipmentGUIService.addTransaction(equipmentID, employeeID, transactionType, transactionDate);
             
-            System.out.println("Transaction completed successfully!");
-            System.out.println("NOTE: Make sure Equipment ID " + equipmentID + " and Employee ID " + employeeID + " exist in the database.");
+            // TR-003: Explicit confirmation message in the GUI (Checkout vs Check-in + damaged flag)
+            String actionText = transactionType.equalsIgnoreCase("checkout") ? "checked out to" : "checked in by";
+            String msg = "Transaction successful: Equipment " + equipmentID + " " + actionText + " Employee " + employeeID + ".";
+            if (isDamaged) {
+                msg += " (Marked as damaged)";
+            }
+
+            JOptionPane.showMessageDialog(this, msg, "Success", JOptionPane.INFORMATION_MESSAGE);
             
+            // Clear the form
             textEquipmentID.setText("");
             textEmployeeID.setText("");
             rdoBtnCheckin.setSelected(false);
@@ -283,7 +356,15 @@ public class EquipmentGUI extends javax.swing.JPanel {
             isDamaged = false;
             
         } catch (NumberFormatException e) {
-            System.out.println("Error: Invalid ID format");
+            JOptionPane.showMessageDialog(this, 
+                "Invalid ID format. Please use: 1234, EMP-1234, or EQ-5678", 
+                "Input Error", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error processing transaction: " + e.getMessage(), 
+                "Transaction Error", 
+                JOptionPane.ERROR_MESSAGE);
         }
     }                                                             
 

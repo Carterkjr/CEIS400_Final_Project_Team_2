@@ -24,14 +24,22 @@ public class EmployeeGUIService {
     private void initializeSampleData() {
         if (!dataInitialized) {
             dataInitialized = true;
-            System.out.println("Initializing sample employees in database...");
+            System.out.println("Checking employee database...");
             
-            // Add sample employees
-            new Employee(123, "John", "Doe", new Date(), true, "Worker", 1, "Maintenance", new ArrayList<>()).addEmployee();
-            new Employee(456, "Jane", "Smith", new Date(), true, "Supervisor", 2, "Operations", new ArrayList<>()).addEmployee();
-            new Employee(789, "Bob", "Johnson", new Date(), true, "Worker", 1, "Maintenance", new ArrayList<>()).addEmployee();
-            
-            System.out.println("Sample employees initialized! Use Employee IDs: 123, 456, 789");
+            // Only add sample employees if database is completely empty
+            List<Employee> existingEmployees = getAllEmployees();
+            if (existingEmployees == null || existingEmployees.isEmpty()) {
+                System.out.println("No employees found in database. Adding initial sample employees...");
+                
+                // Add sample employees only if none exist
+                new Employee(123, "John", "Doe", new Date(), true, "Worker", 1, "Maintenance", new ArrayList<>()).addEmployee();
+                new Employee(456, "Jane", "Smith", new Date(), true, "Supervisor", 2, "Operations", new ArrayList<>()).addEmployee();
+                new Employee(789, "Bob", "Johnson", new Date(), true, "Worker", 1, "Maintenance", new ArrayList<>()).addEmployee();
+                
+                System.out.println("Sample employees initialized! Use Employee IDs: 123, 456, 789");
+            } else {
+                System.out.println("Found " + existingEmployees.size() + " existing employees in database");
+            }
         }
     }
 
@@ -46,6 +54,20 @@ public class EmployeeGUIService {
             // Return null if employee not found
             return null;
         }
+    }
+
+    /**
+     * Alternative simple method to get a test employee (for testing/demo purposes)
+     * @param employeeID The employee ID
+     * @return A test Employee object
+     */
+    public Employee getEmployeeByIDSimple(int employeeID) {
+        // Return employee with the provided ID (test version)
+        Date temp = new Date();
+        List equipmentHistory = new ArrayList();
+        Employee emp = new Employee(employeeID,"John","Doe",temp,true,
+                "Worker",1,"Maintenance",equipmentHistory);
+        return emp;
     }
  
 
@@ -76,6 +98,18 @@ public class EmployeeGUIService {
         }
     }
 
+    /**
+     * Alternative simple hiring method (for testing/demo)
+     * @param emp The employee to hire
+     * @return A random ID for testing
+     */
+    public int employeeHiredSimple(Employee emp ){
+        System.out.println("Employee hired: " + emp.getFirstName() + " " + emp.getLastName());
+        System.out.println("Role: " + emp.getRole() + ", Department: " + emp.getDepartment());
+        int resultID = (int)(Math.random() * 10000) + 1;
+        return resultID;
+    }
+
       
       public int employeeFired(Employee emp ){
         try {
@@ -91,6 +125,20 @@ public class EmployeeGUIService {
             System.err.println("Error terminating employee: " + e.getMessage());
             return -1; // Return -1 to indicate error
         }
+    }
+
+    /**
+     * Alternative firing method using direct SQL (for testing/demo)
+     * @param emp The employee to terminate
+     * @return A random ID for testing
+     */
+    public int employeeFiredWithDirectSQL(Employee emp ){
+        System.out.println("Employee terminated: " + emp.getFirstName() + " " + emp.getLastName());
+        System.out.println("Employee ID: " + emp.getEmployeeID());
+        String queryString = "UPDATE employees SET activeEmployee = 0 WHERE employeeID = " + emp.getEmployeeID() + ";";
+        DBConnect.saveData("employees", queryString);
+        int resultID = (int)(Math.random() * 10000) + 1;
+        return resultID;
     }
     
     /**
