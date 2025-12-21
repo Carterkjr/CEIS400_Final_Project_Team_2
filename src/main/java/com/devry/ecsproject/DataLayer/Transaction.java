@@ -18,22 +18,28 @@ public class Transaction {
     private int employeeID;
     private String type;
     private Date transactionDate;
+    private boolean isDamaged;
     
     // constructors
     public Transaction(int transactionID, int equipmentID, int employeeID, String type, Date transactionDate) {
+        this(transactionID, equipmentID, employeeID, type, transactionDate, false);
+    }
+    
+    public Transaction(int transactionID, int equipmentID, int employeeID, String type, Date transactionDate, boolean isDamaged) {
         setTransactionID(transactionID);
         setEquipmentID(equipmentID);
         setEmployeeID(employeeID);
         setType(type);
         setTransactionDate(transactionDate);
+        setIsDamaged(isDamaged);
     }
 
     public void recordTransaction(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = dateFormat.format(getTransactionDate());
-        String sqlQuery = "INSERT INTO transactions (equipmentID, employeeID, type, transactionDate) VALUES (" + getEquipmentID() + ", " + getEmployeeID() + ", '" + getType() + "', '" + formattedDate + "');";
+        String sqlQuery = "INSERT INTO transactions (equipmentID, employeeID, transactionType, transactionDate, isDamaged) VALUES (" + getEquipmentID() + ", " + getEmployeeID() + ", '" + getType() + "', '" + formattedDate + "', " + (getIsDamaged() ? 1 : 0) + ");";
         DBConnect.saveData("transactions", sqlQuery);
-        System.out.println("TRANSACTION RECORDED\n---------------------------\nEmpID: " + getEmployeeID() + "\nEquipID: " + getEquipmentID() + "\nType: " + getType());
+        System.out.println("TRANSACTION RECORDED\n---------------------------\nEmpID: " + getEmployeeID() + "\nEquipID: " + getEquipmentID() + "\nType: " + getType() + "\nDamaged: " + getIsDamaged());
     }
     
     // getters and setters
@@ -75,5 +81,13 @@ public class Transaction {
     
     public void setTransactionDate(Date date) {
         this.transactionDate = date;
+    }
+    
+    public boolean getIsDamaged() {
+        return this.isDamaged;
+    }
+    
+    public void setIsDamaged(boolean isDamaged) {
+        this.isDamaged = isDamaged;
     }
 }

@@ -152,7 +152,7 @@ public class EquipmentGUIService {
             
             System.out.println("Loading transactions from database...");
             String query = "SELECT t.transactionID, t.equipmentID, e.equipmentName, t.employeeID, " +
-                          "emp.firstName, emp.lastName, t.transactionType, t.transactionDate " +
+                          "emp.firstName, emp.lastName, t.transactionType, t.transactionDate, t.isDamaged " +
                           "FROM transactions t " +
                           "LEFT JOIN equipment e ON t.equipmentID = e.equipmentID " +
                           "LEFT JOIN employees emp ON t.employeeID = emp.employeeID " +
@@ -161,9 +161,12 @@ public class EquipmentGUIService {
             DBConnect.executeQueryWithCallback(query, (ResultSet rs) -> {
                 try {
                     while (rs.next()) {
+                        boolean isDamaged = rs.getBoolean("isDamaged");
+                        String damageStatus = isDamaged ? " [DAMAGED]" : " [OK]";
+                        
                         String transaction = "ID: " + rs.getInt("transactionID") + 
                                            " | Equipment: " + rs.getInt("equipmentID") + 
-                                           " (" + (rs.getString("equipmentName") != null ? rs.getString("equipmentName") : "Unknown") + ")" +
+                                           " (" + (rs.getString("equipmentName") != null ? rs.getString("equipmentName") : "Unknown") + ")" + damageStatus +
                                            " | Employee: " + rs.getInt("employeeID") + 
                                            " (" + (rs.getString("firstName") != null ? rs.getString("firstName") + " " + rs.getString("lastName") : "Unknown") + ")" +
                                            " | Type: " + rs.getString("transactionType") + 
@@ -182,18 +185,18 @@ public class EquipmentGUIService {
         return dbTransactions;
     }
     
-    public static void addTransaction(int equipmentID, int employeeID, String type, Date date) {
+    public static void addTransaction(int equipmentID, int employeeID, String type, Date date, boolean isDamaged) {
         // Save to database if enabled
         if (useDatabase) {
             try {
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String formattedDate = sdf.format(date);
                 
-                String insertSQL = "INSERT INTO transactions (equipmentID, employeeID, transactionType, transactionDate) VALUES (" +
-                                 equipmentID + ", " + employeeID + ", '" + type + "', '" + formattedDate + "')";
+                String insertSQL = "INSERT INTO transactions (equipmentID, employeeID, transactionType, transactionDate, isDamaged) VALUES (" +
+                                 equipmentID + ", " + employeeID + ", '" + type + "', '" + formattedDate + "', " + (isDamaged ? 1 : 0) + ")";
                 
                 DBConnect.saveData("transactions", insertSQL);
-                System.out.println("Transaction saved to database: Equipment " + equipmentID + " " + type + " by Employee " + employeeID);
+                System.out.println("Transaction saved to database: Equipment " + equipmentID + " " + type + " by Employee " + employeeID + " (Damaged: " + isDamaged + ")");
                 
             } catch (Exception e) {
                 System.err.println("Error saving transaction to database: " + e.getMessage());
@@ -203,8 +206,13 @@ public class EquipmentGUIService {
         
         // Also save to memory for current session
         String transaction = "Equipment ID: " + equipmentID + " | Employee ID: " + employeeID + 
-                           " | Type: " + type + " | Date: " + date.toString();
+                           " | Type: " + type + " | Date: " + date.toString() + " | Damaged: " + isDamaged;
         transactionLog.add(transaction);
+    }
+
+    // Backwards compatibility method
+    public static void addTransaction(int equipmentID, int employeeID, String type, Date date) {
+        addTransaction(equipmentID, employeeID, type, date, false);
     }
 
 
@@ -315,12 +323,43 @@ public class EquipmentGUIService {
         return info.toString();
     }
     
-    public void setDamageStatus(boolean damaged){
-        System.out.println("Equipment damage status updated to: " + damaged);
+    /**
+     * Update damage status for equipment in database
+     * @param equipmentID The ID of the equipment to update
+     * @param damaged The new damage status
+     */
+    public void setDamageStatus(int equipmentID, boolean damaged){
+        if (useDatabase) {
+            try {
+                String updateSQL = "UPDATE equipment SET isDamaged = " + (damaged ? 1 : 0) + " WHERE equipmentID = " + equipmentID;
+                DBConnect.saveData("equipment", updateSQL);
+                System.out.println("Equipment " + equipmentID + " damage status updated to: " + damaged);
+            } catch (Exception e) {
+                System.err.println("Error updating damage status: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Equipment damage status updated to: " + damaged + " (database disabled)");
+        }
     }
     
-    public void setAvailability(boolean available){
-        System.out.println("Equipment availability updated to: " + available);
+    /**
+     * Update availability status for equipment in database
+     * @param equipmentID The ID of the equipment to update
+     * @param available The new availability status
+     */
+    public void setAvailability(int equipmentID, boolean available){
+        if (useDatabase) {
+            try {
+                String status = available ? "available" : "checked out";
+                String updateSQL = "UPDATE equipment SET isAvailable = " + (available ? 1 : 0) + " WHERE equipmentID = " + equipmentID;
+                DBConnect.saveData("equipment", updateSQL);
+                System.out.println("Equipment " + equipmentID + " availability updated to: " + available + " (" + status + ")");
+            } catch (Exception e) {
+                System.err.println("Error updating availability status: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Equipment availability updated to: " + available + " (database disabled)");
+        }
     }
 
    

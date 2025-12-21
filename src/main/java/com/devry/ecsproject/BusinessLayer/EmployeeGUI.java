@@ -1100,10 +1100,44 @@ public class EmployeeGUI extends javax.swing.JPanel {
                 return;
             }
             
+            // Check for outstanding equipment before termination
+            List<Integer> outstandingEquipment = employeeService.getOutstandingEquipment(employeeID);
+            
+            if (!outstandingEquipment.isEmpty()) {
+                // Employee has equipment with recent checkins - show warning and prevent termination
+                String outstandingDetails = employeeService.getOutstandingEquipmentDetails(employeeID);
+                
+                String warningMessage = "Cannot terminate contract!\n\n" +
+                                      "Employee " + emp.getFirstName() + " " + emp.getLastName() + " (ID: " + employeeID + ")\n" +
+                                      "has " + outstandingEquipment.size() + " item(s) with recent check-ins that block termination.\n\n" +
+                                      outstandingDetails + "\n" +
+                                      "Equipment with recent check-ins prevents termination.";
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    warningMessage, 
+                    "Cannot Terminate - Recent Check-ins", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                
+                lblTerminateEmployeeError.setText("Termination blocked - recent check-ins");
+                return;
+            }
+            
+            // No blocking checkins - proceed with termination
             emp.setActiveEmployee(false);
             int result = employeeService.employeeFired(emp);
             
             if (result > 0) {
+                // Show success popup
+                String successMessage = "Employee contract terminated successfully!\n\n" +
+                                      "Employee: " + emp.getFirstName() + " " + emp.getLastName() + " (ID: " + employeeID + ")\n" +
+                                      "had no blocking check-ins and has been marked as inactive.\n\n" +
+                                      "Termination completed successfully.";
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    successMessage, 
+                    "Contract Terminated Successfully", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                
                 lblTerminateEmployeeError.setText("Employee terminated successfully");
                 
                 // Clear the form
@@ -1116,6 +1150,11 @@ public class EmployeeGUI extends javax.swing.JPanel {
                 loadEmployeeListTab();
             } else {
                 lblTerminateEmployeeError.setText("Error terminating employee");
+                
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "An error occurred while terminating the employee.\nPlease try again or contact system administrator.", 
+                    "Termination Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
             lblTerminateEmployeeError.setText("Invalid Employee ID");

@@ -24,15 +24,15 @@ public class Equipment {
     }
 
     public void updateEquipment() {
-        String sqlQuery = "UPDATE equipment SET name = '" + getName() + "', type = '" + getType() + "', isDamaged = " + (isDamage() ? 1 : 0) + ", status = '" + (isAvailable() ? "available" : "checked out") + "' WHERE equipmentID = " + getEquipmentID() + ";";
+        String sqlQuery = "UPDATE equipment SET equipmentName = '" + getName() + "', category = '" + getType() + "', isDamaged = " + (isDamage() ? 1 : 0) + ", isAvailable = " + (isAvailable() ? 1 : 0) + " WHERE equipmentID = " + getEquipmentID() + ";";
         DBConnect.saveData("equipment", sqlQuery);
         System.out.println("EQUIPMENT UPDATED\n---------------------------\nEquipID: " + getEquipmentID() + "\nName: " + getName() + "\nType: " + getType() + "\nDamage: " + isDamage() + "\nAvailable: " + isAvailable());
     }
     
     public void addEquipment() {
-        String sqlQuery = "INSERT INTO equipment (equipmentID, name, type, isDamaged, status) VALUES (" + 
+        String sqlQuery = "INSERT INTO equipment (equipmentID, equipmentName, category, isDamaged, isAvailable) VALUES (" + 
                          getEquipmentID() + ", '" + getName() + "', '" + getType() + "', " + 
-                         (isDamage() ? 1 : 0) + ", '" + (isAvailable() ? "available" : "checked out") + "');";
+                         (isDamage() ? 1 : 0) + ", " + (isAvailable() ? 1 : 0) + ");";
         DBConnect.saveData("equipment", sqlQuery);
         System.out.println("EQUIPMENT ADDED\n---------------------------\nEquipID: " + getEquipmentID() + "\nName: " + getName() + "\nType: " + getType());
     }

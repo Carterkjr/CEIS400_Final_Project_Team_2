@@ -308,6 +308,9 @@ public class EquipmentGUI extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, msg, "Missing Transaction Type", JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            
+            // Read the current checkbox state at submission time
+            isDamaged = checkDamaged.isSelected();
 
             Equipment equipment = equipmentService.getEquipmentByID(equipmentID);
 
@@ -318,24 +321,32 @@ public class EquipmentGUI extends javax.swing.JPanel {
                 return;
             }
 
-            if (isDamaged) {
-                equipment.setDamage(true);
-                equipmentService.setDamageStatus(true);
-            }
+            // Set damage status (always update, whether true or false)
+            equipment.setDamage(isDamaged);
+            equipmentService.setDamageStatus(equipmentID, isDamaged);
 
             boolean isAvailable = transactionType.equals("checkin");
             equipment.setAvailable(isAvailable);
-            equipmentService.setAvailability(isAvailable);
+            equipmentService.setAvailability(equipmentID, isAvailable);
+            
+            // Debug output to console
+            System.out.println("DEBUG: isDamaged checkbox value = " + isDamaged);
+            System.out.println("DEBUG: equipment damage status = " + equipment.isDamage());
+            
+            // Update equipment in database with new damage/availability status
+            if (EquipmentGUIService.isUsingDatabase()) {
+                equipment.updateEquipment();
+            }
             
             Date transactionDate = new Date();
             
             // Only save to database if USE_DATABASE is true
             if (EquipmentGUIService.isUsingDatabase()) {
-                Transaction transaction = new Transaction(0, equipmentID, employeeID, transactionType, transactionDate);
+                Transaction transaction = new Transaction(0, equipmentID, employeeID, transactionType, transactionDate, isDamaged);
                 transaction.recordTransaction();
             }
             
-            EquipmentGUIService.addTransaction(equipmentID, employeeID, transactionType, transactionDate);
+            EquipmentGUIService.addTransaction(equipmentID, employeeID, transactionType, transactionDate, isDamaged);
             
             // TR-003: Explicit confirmation message in the GUI (Checkout vs Check-in + damaged flag)
             String actionText = transactionType.equalsIgnoreCase("checkout") ? "checked out to" : "checked in by";

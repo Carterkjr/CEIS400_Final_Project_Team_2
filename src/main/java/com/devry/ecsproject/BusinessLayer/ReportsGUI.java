@@ -149,15 +149,48 @@ public class ReportsGUI extends javax.swing.JPanel {
                 report.append("Generated: ").append(new java.util.Date().toString()).append("\n");
                 report.append("Total Transactions: ").append(transactions.size()).append("\n\n");
                 
-                report.append("TRANSACTION HISTORY:\n");
-                report.append("=" .repeat(50)).append("\n\n");
-                
-                for (int i = 0; i < transactions.size(); i++) {
-                    report.append("[").append(i + 1).append("] ").append(transactions.get(i)).append("\n\n");
+                // Count damaged vs OK transactions
+                int damagedCount = 0;
+                int okCount = 0;
+                for (String transaction : transactions) {
+                    if (transaction.contains("[DAMAGED]")) {
+                        damagedCount++;
+                    } else if (transaction.contains("[OK]")) {
+                        okCount++;
+                    }
                 }
                 
-                report.append("=" .repeat(50)).append("\n");
+                report.append("SUMMARY:\n");
+                report.append("- Equipment in Good Condition: ").append(okCount).append("\n");
+                report.append("- Equipment Marked as Damaged: ").append(damagedCount).append("\n\n");
+                
+                report.append("TRANSACTION HISTORY:\n");
+                report.append("=".repeat(80)).append("\n\n");
+                
+                for (int i = 0; i < transactions.size(); i++) {
+                    String transaction = transactions.get(i);
+                    report.append("[").append(i + 1).append("] ");
+                    
+                    // Highlight damaged items
+                    if (transaction.contains("[DAMAGED]")) {
+                        report.append("⚠️  ").append(transaction).append("\n");
+                        report.append("    ^^^ ATTENTION: Equipment was marked as DAMAGED during this transaction\n\n");
+                    } else {
+                        report.append("✅  ").append(transaction).append("\n\n");
+                    }
+                }
+                
+                if (damagedCount > 0) {
+                    report.append("=".repeat(80)).append("\n");
+                    report.append("⚠️  WARNING: ").append(damagedCount).append(" transaction(s) involved damaged equipment!\n");
+                    report.append("Please review damaged equipment and schedule maintenance if needed.\n");
+                    report.append("=".repeat(80)).append("\n\n");
+                }
+                
                 report.append("End of Report\n\n");
+                report.append("LEGEND:\n");
+                report.append("✅ = Equipment in good condition [OK]\n");
+                report.append("⚠️  = Equipment marked as damaged [DAMAGED]\n\n");
                 report.append("TIP: Use the Equipment tab to create more transactions,\n");
                 report.append("then refresh this report to see updated data.");
                 
